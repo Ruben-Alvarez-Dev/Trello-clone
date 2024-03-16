@@ -1,8 +1,8 @@
 {
     "lists": [
-      { "id": "", "title" : "tasklist1", "value": ["", "", "", ""] },
-      { "id": "", "title" : "tasklist2", "value": ["", "", "", ""] },
-      { "id": "", "title" : "tasklist3", "value": ["", "", "", ""] }
+      { "id": "", "title" : "To do", "value": ["", "", "", ""] },
+      { "id": "", "title" : "In progress", "value": ["", "", "", ""] },
+      { "id": "", "title" : "Done", "value": ["", "", "", ""] }
       
     ],
     "tasks": [

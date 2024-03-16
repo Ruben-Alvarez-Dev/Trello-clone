@@ -23,6 +23,13 @@ export const initData = () => {
         list.value = tasks.slice(startIndex, endIndex).map(task => task.id);
     });
     
+    localStorage.getItem("lists") || localStorage.setItem("lists", JSON.stringify(lists));
+    localStorage.getItem("tasks") || localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    lists = JSON.parse(localStorage.getItem("lists"));
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+
+    
 
     return { lists, tasks};
 }
