@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './AddCardorList.css';
 import { v4 } from 'uuid';
 
-export const AddCardorList = ({ list }) => {
+export const AddCardorList = ({ list, setData }) => {
   
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -40,6 +40,11 @@ export const AddCardorList = ({ list }) => {
       localStorage.setItem('lists', JSON.stringify(updatedLists));
       toggleInput();
       setInputValue('');
+      setData(prevData => ({
+        ...prevData,
+        lists: updatedLists,
+        tasks: updatedTasks,
+      }));
 
   }
   return (

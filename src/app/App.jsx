@@ -114,7 +114,7 @@ export const App = () => {
                           </div>
                         )}
                         </Droppable>
-                      <AddCardorList list={list}/>
+                      <AddCardorList list={list} setData={setData}/>
 
                       {/* <Input type={"addTask"} list={list} setData={setData}/> */}                            
                     </div>
@@ -126,7 +126,7 @@ export const App = () => {
               })
             }
           {provided.placeholder}
-          <AddCardorList />
+          <AddCardorList setData={setData}/>
 
           {/* <Input type={"addList"} style="inputList"/> */}                            
         </div>
