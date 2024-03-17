@@ -10,7 +10,6 @@ export const AddCardorList = ({ list, setData }) => {
   const toggleInput = () => {
     setShowInput(!showInput);
   }
-  
   const handleAddTask = () => {
     
       localStorage.getItem('tasks');
@@ -47,6 +46,21 @@ export const AddCardorList = ({ list, setData }) => {
       }));
 
   }
+  const handleRemoveList = (event) => {
+    event.stopPropagation();
+    
+    const lists = JSON.parse(localStorage.getItem("lists"));
+    
+    const newList = lists.filter(item => item.title !== list.title);
+    localStorage.setItem("lists", JSON.stringify(newList));
+
+    setData(prevData => ({
+        ...prevData,
+        lists: newList,
+      }));
+}
+
+
   return (
     
     <>
@@ -71,7 +85,7 @@ export const AddCardorList = ({ list, setData }) => {
               <div className="addCardorList">
                 <div className="display">
                   <div className="btn" onClick={toggleInput}>+</div>
-                  <div className="btn">x</div>
+                  <div className="btn" onClick={handleRemoveList}>x</div>
                   <div className="btn">...</div>
                 </div>
                 

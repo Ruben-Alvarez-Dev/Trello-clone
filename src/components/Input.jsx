@@ -17,8 +17,6 @@ export const Input = ({ type, list, setData, style="" }) => {
             ...prevData,
             lists: newList,
           }));
-
-        
     }
     const handleAdd = () => {
         setShowInput(true);
