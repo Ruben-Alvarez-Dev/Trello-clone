@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './AddCardorList.css';
+import { v4 } from 'uuid';
 
-export const AddCardorList = () => {
+export const AddCardorList = ({ list }) => {
   
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -9,9 +10,37 @@ export const AddCardorList = () => {
   const toggleInput = () => {
     setShowInput(!showInput);
   }
-
+  
   const handleAddTask = () => {
-    console.log(inputValue);
+    
+      localStorage.getItem('tasks');
+      const storedTasks = localStorage.getItem('tasks');
+      const parsedTasks = JSON.parse(storedTasks);
+      const newTask = {
+        id: v4(),
+        title: inputValue,
+        value: inputValue,
+      };
+      const updatedTasks = [...parsedTasks, newTask];
+      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+      
+      localStorage.getItem('lists');
+      const storedLists = localStorage.getItem('lists');
+      const parsedLists = JSON.parse(storedLists);
+      const listIndex = parsedLists.findIndex(l => l.id === list.id);
+      const updatedList = {
+        ...parsedLists[listIndex],
+        value: [...parsedLists[listIndex].value, newTask.id],
+      };
+      const updatedLists = [
+        ...parsedLists.slice(0, listIndex),
+        updatedList,
+        ...parsedLists.slice(listIndex + 1),
+      ];
+      localStorage.setItem('lists', JSON.stringify(updatedLists));
+      toggleInput();
+      setInputValue('');
+
   }
   return (
     
