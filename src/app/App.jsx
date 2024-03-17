@@ -69,6 +69,26 @@ export const App = () => {
     localStorage.setItem('tasks', JSON.stringify(data.tasks));
   }
 
+  const handleRemoveTask = (e) => {
+    e.stopPropagation();
+    const task = data.tasks.find(task => task.value === e.target.previousSibling.textContent);
+    const lists = JSON.parse(localStorage.getItem("lists"));
+    const tasks = JSON.parse(localStorage.getItem("tasks"));
+    const newLists = lists.map(list => {
+      return {
+        ...list,
+        value: list.value.filter(item => item !== task.id)
+      }
+    });
+    const newTasks = tasks.filter(item => item.id !== task.id);
+    localStorage.setItem("lists", JSON.stringify(newLists));
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
+    setData(prevData => ({
+      ...prevData,
+      lists: newLists,
+      tasks: newTasks,
+    }));
+  }
   return (
     
       <DragDropContext onDragEnd={onDragEnd}>
@@ -106,7 +126,7 @@ export const App = () => {
                                         <div className="task-title">
                                           {data.tasks.find(task => task.id === value).value}
                                         </div>
-                                        <div className="task-remove">
+                                        <div className="task-remove" onClick={handleRemoveTask}>
                                           rem
                                         </div>
                                       </div>
