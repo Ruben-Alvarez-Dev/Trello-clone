@@ -23,23 +23,32 @@ export const Input = ({ type, list, setData, style="" }) => {
     const handleAdd = () => {
         setShowInput(true);
       };
-    return (
+
+    const toggleInput = (event) => {
+        
+        setShowInput(!showInput);
+    }
+    
+      return (
     
     
-    <div className={`input ${style}`}>
+    <div className={`addItem ${style}`}>
         
         {type === 'addTask' && (
             <>
                 {
                     showInput && (
-                        <input type="text" placeholder="Enter a title for this card..." />
+                        <input 
+                            type="text"
+                            placeholder="Enter a title for this card..." 
+                            onBlur={toggleInput} />
                     )
 
                 }
-                <div>
-                    <div className="btn big" onClick={handleAdd}>Add Task ...</div>
-                    <div className="btn" onClick={handleClose}>X</div>
-                    <div className="btn">...</div>
+                <div className="buttons">
+                    <h3 className="btn" onClick={handleAdd}>+</h3>
+                    <h3 className="btn" onClick={handleClose}>x</h3>
+                    <h3 className="btn">...</h3>
                 </div>
             </>
         )}

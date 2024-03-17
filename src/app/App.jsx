@@ -1,8 +1,9 @@
 import './App.css'
 import { initData } from '../helper/InitData'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Input } from '../components/Input';
+/* import { Input } from '../components/Input'; */
 import { useState, useEffect } from 'react';
+import { AddCardorList } from '../components/AddCardorList';
 
 export const App = () => {
 
@@ -113,7 +114,9 @@ export const App = () => {
                           </div>
                         )}
                         </Droppable>
-                      <Input type={"addTask"} list={list} setData={setData}/>                            
+                      <AddCardorList />
+
+                      {/* <Input type={"addTask"} list={list} setData={setData}/> */}                            
                     </div>
                     
                   )}
@@ -123,7 +126,9 @@ export const App = () => {
               })
             }
           {provided.placeholder}
-          <Input type={"addList"} style="inputList"/>                            
+          <AddCardorList />
+
+          {/* <Input type={"addList"} style="inputList"/> */}                            
         </div>
       )}
       </Droppable>
