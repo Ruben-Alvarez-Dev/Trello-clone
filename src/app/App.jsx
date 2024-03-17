@@ -1,10 +1,34 @@
 import './App.css'
 import { initData } from '../helper/InitData'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { Input } from '../components/Input';
+import { useState, useEffect } from 'react';
 
 export const App = () => {
 
-  const data = initData();
+  const [data, setData] = useState({
+    lists: initData().lists,
+    tasks: initData().tasks,
+  });
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const storedLists = localStorage.getItem('lists');
+      if (storedLists) {
+        const parsedLists = JSON.parse(storedLists);
+        setData(prevData => ({
+          ...prevData,
+          lists: parsedLists,
+        }));
+      }
+    };
+  
+    window.addEventListener('storage', handleStorageChange);
+  
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId, type } = result;
@@ -39,6 +63,9 @@ export const App = () => {
 
     const movedList = data.lists.splice(source.index, 1)[0];
     data.lists.splice(destination.index, 0, movedList);
+
+    localStorage.setItem('lists', JSON.stringify(data.lists));
+    localStorage.setItem('tasks', JSON.stringify(data.tasks));
   }
 
   return (
@@ -59,7 +86,7 @@ export const App = () => {
                     <div className="list" ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}>
-                      <h2>{list.title}</h2>
+                      <div className="listName">{list.title}</div>
 
                         <Droppable droppableId={list.title} type="task">
                         {(provided) => (
@@ -86,7 +113,7 @@ export const App = () => {
                           </div>
                         )}
                         </Droppable>
-                                        
+                      <Input type={"addTask"} list={list} setData={setData}/>                            
                     </div>
                     
                   )}
@@ -96,6 +123,7 @@ export const App = () => {
               })
             }
           {provided.placeholder}
+          <Input type={"addList"} style="inputList"/>                            
         </div>
       )}
       </Droppable>
