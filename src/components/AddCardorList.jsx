@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './AddCardorList.css';
 import { v4 } from 'uuid';
 
-export const AddCardorList = ({ list, setData }) => {
+export const AddCardorList = ({ type, list, setData }) => {
   
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -11,7 +11,10 @@ export const AddCardorList = ({ list, setData }) => {
     setShowInput(!showInput);
   }
   const handleAddTask = () => {
-    
+
+        
+    if (list && inputValue) {
+
       localStorage.getItem('tasks');
       const storedTasks = localStorage.getItem('tasks');
       const parsedTasks = JSON.parse(storedTasks);
@@ -44,7 +47,17 @@ export const AddCardorList = ({ list, setData }) => {
         lists: updatedLists,
         tasks: updatedTasks,
       }));
-
+    } else {
+      setInputValue('');
+      toggleInput();
+    }
+  }
+  const handleBlur = () => {
+    if (inputValue) {
+      handleAddTask();
+    } else {
+      toggleInput();
+    }
   }
   const handleRemoveList = (event) => {
     event.stopPropagation();
@@ -59,40 +72,116 @@ export const AddCardorList = ({ list, setData }) => {
         lists: newList,
       }));
 }
-
-
+  const handleAddList = () => {}
+  
   return (
     
     <>
-        {
-          (showInput)
-          ? <>
-              <div onBlur={toggleInput} className="addCardorList">
-                  <input 
-                    type="text" 
-                    placeholder="Enter task..." 
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                  />
-                <div className="display">
-                  <div className="btn" onClick={handleAddTask}>Add List</div>
-                  <div className="btn" onClick={toggleInput}>Close</div>
-                </div>
+        {showInput && type === "forTask" && (
+          
+          <>
+            <div onBlur={handleBlur} className="addCardorList">
+                <input 
+                  type="text" 
+                  placeholder="Enter task..." 
+                  value={inputValue}
+                  autoFocus
+                  onChange={(e) => setInputValue(e.target.value)}
+                />
+              <div className="display">
+                <div className="btn" onClick={handleAddTask}>Add Task</div>
+                <div className="btn" onClick={toggleInput}>Close</div>
               </div>
-            </>
+            </div>
+          </>
 
-          : <>
+        )}
+        {showInput && type === "forList" && (
+          
+          <>
+            <div onBlur={handleBlur} className="addCardorList">
+                <input 
+                  type="text" 
+                  placeholder="Enter task..." 
+                  value={inputValue}
+                  autoFocus
+                  onChange={(e) => setInputValue(e.target.value)}
+                />
+              <div className="display">
+                <div className="btn" onClick={handleAddList}>Add List</div>
+                <div className="btn" onClick={toggleInput}>Close</div>
+              </div>
+            </div>
+          </>
+
+        )}
+        {!showInput && type === "forTask" && (
+          
+          <>
+            <div className="addCardorList">
+              <div className="display">
+                <div className="btn" onClick={toggleInput}>+</div>
+                <div className="btn" onClick={handleRemoveList}>x</div>
+                <div className="btn">...</div>
+              </div>
+            </div>
+          </>
+
+        )}
+        {!showInput && type === "forList" && (
+          
+          
+          <>
+            <div className="addCardorList">
+              <div className="display">
+                <div className="btn" onClick={toggleInput}>+ Add List</div>
+                <div className="btn">...</div>
+              </div>
+            </div>
+          </>
+
+        )}
+        
+        {/* {
+          (showInput)
+          ? ((type === "forTask")
+            ?
+                <>
+                  <div onBlur={handleBlur} className="addCardorList">
+                      <input 
+                        type="text" 
+                        placeholder="Enter task..." 
+                        value={inputValue}
+                        autoFocus
+                        onChange={(e) => setInputValue(e.target.value)}
+                      />
+                    <div className="display">
+                      <div className="btn" onClick={handleAddTask}>Add List</div>
+                      <div className="btn" onClick={toggleInput}>Close</div>
+                    </div>
+                  </div>
+                </>
+            : 
+                <>
+                  <div className="addCardorList">
+                    <div className="display">
+                      <div className="btn" onClick={toggleInput}>+ Add List</div>
+                      <div className="btn">...</div>
+                    </div>
+                  </div>
+                </>
+            )
+          : 
+            <>
               <div className="addCardorList">
                 <div className="display">
                   <div className="btn" onClick={toggleInput}>+</div>
                   <div className="btn" onClick={handleRemoveList}>x</div>
                   <div className="btn">...</div>
                 </div>
-                
               </div>
             </>
-
-        }
+        } */}
       
 
 

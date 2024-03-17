@@ -72,6 +72,25 @@ export const App = () => {
   const handleRemoveTask = (e) => {
     e.stopPropagation();
     const task = data.tasks.find(task => task.value === e.target.previousSibling.textContent);
+    const updatedLists = data.lists.map(list => {
+      return {
+        ...list,
+        value: list.value.filter(item => item !== task.id)
+      }
+    });
+    const updatedTasks = data.tasks.filter(item => item.id !== task.id);
+    setData(prevData => ({
+      ...prevData,
+      lists: updatedLists,
+      tasks: updatedTasks,
+    }));
+    localStorage.setItem("lists", JSON.stringify(updatedLists));
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  }
+
+  /*   const handleRemoveTask = (e) => {
+    e.stopPropagation();
+    const task = data.tasks.find(task => task.value === e.target.previousSibling.textContent);
     const lists = JSON.parse(localStorage.getItem("lists"));
     const tasks = JSON.parse(localStorage.getItem("tasks"));
     const newLists = lists.map(list => {
@@ -88,7 +107,7 @@ export const App = () => {
       lists: newLists,
       tasks: newTasks,
     }));
-  }
+  } */
   return (
     
       <DragDropContext onDragEnd={onDragEnd}>
@@ -139,7 +158,7 @@ export const App = () => {
                           </div>
                         )}
                         </Droppable>
-                      <AddCardorList list={list} setData={setData}/>
+                      <AddCardorList type="forTask" list={list} setData={setData}/>
 
                       {/* <Input type={"addTask"} list={list} setData={setData}/> */}                            
                     </div>
@@ -151,7 +170,7 @@ export const App = () => {
               })
             }
           {provided.placeholder}
-          <AddCardorList setData={setData}/>
+          <AddCardorList type="forList" setData={setData}/>
 
           {/* <Input type={"addList"} style="inputList"/> */}                            
         </div>
