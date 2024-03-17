@@ -15,16 +15,27 @@
   border-radius: 10px;
   width: 13em;
   margin: 0.3em;
-  
-    
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.listName{
+.title{
   background-color: rgba(250, 235, 215, 0.1);
-  border: 1px solid transparent;
+  border: 1px solid rgba(250, 235, 215, 0.1);
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.title-label{
+  background-color: rgba(250, 235, 215, 0.1);
+  border: 1px solid rgba(250, 235, 215, 0.1);
+  position: relative;
+  
   border-radius: 10px;
   font-size: x-large;
   width: 100%;
@@ -33,8 +44,33 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-
 }
+.title-label:hover{
+  background-color: rgba(250, 235, 215, 0.3);
+  cursor: pointer;
+}
+.title-remove{
+  /* opacity: 0; */
+  background-color: rgba(255, 0, 0, 0.1);
+  width: 20%;
+  height: 100%;
+  border-radius: 0 10px 10px 0px;
+  position: absolute;
+  right: 0;
+  
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.title-remove:hover{
+  background-color: rgba(255, 0, 0, 0.8);
+  cursor: pointer;
+}
+.title:hover .title-remove{
+  /* opacity: 1; */
+  display: flex;
+}
+
 .task{
   background-color: rgba(250, 235, 215, 0.1);
   border: 1px solid rgba(250, 235, 215, 0.1);

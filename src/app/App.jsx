@@ -87,7 +87,19 @@ export const App = () => {
     localStorage.setItem("lists", JSON.stringify(updatedLists));
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   }
-
+  const handleRemoveList = (e) => {
+    e.stopPropagation();
+    const list = data.lists.find(list => list.title === e.target.previousSibling.textContent);
+    const updatedLists = data.lists.filter(item => item.id !== list.id);
+    const updatedTasks = data.tasks.filter(task => !list.value.includes(task.id));
+    setData(prevData => ({
+      ...prevData,
+      lists: updatedLists,
+      tasks: updatedTasks,
+    }));
+    localStorage.setItem("lists", JSON.stringify(updatedLists));
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  }
   /*   const handleRemoveTask = (e) => {
     e.stopPropagation();
     const task = data.tasks.find(task => task.value === e.target.previousSibling.textContent);
@@ -126,8 +138,10 @@ export const App = () => {
                     <div className="list" ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}>
-                      <div className="listName">{list.title}</div>
-
+                      <div className="title">
+                        <div className="title-label">{list.title}</div>
+                        <div className="title-remove" onClick={handleRemoveList}>rem</div>                        
+                      </div>
                         <Droppable droppableId={list.title} type="task">
                         {(provided) => (
                           <div ref={provided.innerRef}

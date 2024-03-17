@@ -21,12 +21,7 @@ export const AddCardorList = ({ type, list, setData }) => {
     parent.children[1].style.display = 'flex';
     parent.children[0].style.display = 'none';
   }
-  const addTaskInput = (e) => {}
-  const openlistInput = (e) => {}
-
-  const handleAddTask = () => {
-
-        
+  const addTaskInput = () => {
     if (list && inputValueTask) {
 
       localStorage.getItem('tasks');
@@ -54,7 +49,7 @@ export const AddCardorList = ({ type, list, setData }) => {
         ...parsedLists.slice(listIndex + 1),
       ];
       localStorage.setItem('lists', JSON.stringify(updatedLists));
-      toggleInput();
+      
       setInputValueTask('');
       setData(prevData => ({
         ...prevData,
@@ -63,17 +58,20 @@ export const AddCardorList = ({ type, list, setData }) => {
       }));
     } else {
       setInputValueTask('');
-      toggleInput();
+      
     }
   }
-  const handleBlur = () => {
-    if (inputValueTask || inputValueList) {
-      setInputValueList('');
-      setInputValueTask('');
-      toggleInput();
-    } else {
-      toggleInput();
-    }
+  const openlistInput = (e) => {}
+  const removeList = () => {}
+
+  const handleBlur = (e) => {
+    setInputValueTask('');
+    setInputValueList('');
+
+    const current = e.target;
+    const parent = e.target.parentElement.parentElement;
+    parent.children[1].style.display = 'flex';
+    parent.children[0].style.display = 'none';
   }
   const handleRemoveList = (event) => {
     event.stopPropagation();
@@ -89,15 +87,7 @@ export const AddCardorList = ({ type, list, setData }) => {
       }));
 }
   const handleAddList = () => {
-    
-    alert('handleAddList');
 
-    /* const storedLists = localStorage.getItem('lists');
-    const parsedLists = JSON.parse(storedLists);
-    console.log(parsedLists);
-    console.log(inputValueList); */
-
-    
   }
   
   return (
@@ -107,22 +97,22 @@ export const AddCardorList = ({ type, list, setData }) => {
           type === "forTask" && (
             <>
               <div className="forTask">
-                {/* {
-                  showInput && (
-                    <div>
-                      <input />
-                      <h2 onClick={toggleInput}>nuevo</h2>
-                    </div>
-                  )
-                } */}
                   <div className="input_container">
-                    <input className='input'/>
-                      <div className="button_bar">
-                        <h3 onClick={addTaskInput}>New</h3>
-                        <h3 onClick={closeTaskInput}>Close</h3>
+                        <input
+                          className="input" 
+                          type="text" 
+                          placeholder="Enter task..." 
+                          value={inputValueTask}
+                          autoFocus
+                          onChange={(e) => setInputValueTask(e.target.value)}
+                          onBlur={handleBlur}
+                        />                      
+                        <div className="button_bar">
+                          <h3 onClick={addTaskInput}>New</h3>
+                          <h3 onClick={closeTaskInput}>Close</h3>
                       </div>
                   </div>
-                <h3 onClick={openTaskInput}>Task</h3>
+                <h3 onClick={openTaskInput}>Add a task</h3>
               </div>
             </>
           )
@@ -130,79 +120,28 @@ export const AddCardorList = ({ type, list, setData }) => {
         {
           type === "forList" && (
             <>
-              {
-                showInput && (<input />)
-              }
-              <h1 className="toggle" onClick={openlistInput}>List</h1>
+            <div className="forList">
+                  <div className="input_container">
+                        <input
+                          className="input" 
+                          type="text" 
+                          placeholder="Enter task..." 
+                          value={inputValueList}
+                          autoFocus
+                          onChange={(e) => setInputValueList(e.target.value)}
+                          onBlur={handleBlur}
+                        />                      
+                        <div className="button_bar">
+                          <h3 onClick={addTaskInput}>New</h3>
+                          <h3 onClick={closeTaskInput}>Close</h3>
+                      </div>
+                  </div>
+                <h3 onClick={openTaskInput}>Add a list</h3>
+              </div>
             </>
           )
         }
 
-        {/* {showInput && type === "forTask" && (
-          
-          <>
-            <div onBlur={handleBlur} className="addCardorList">
-                <input 
-                  type="text" 
-                  placeholder="Enter task..." 
-                  value={inputValueTask}
-                  autoFocus
-                  onChange={(e) => setInputValueTask(e.target.value)}
-                />
-              <div className="display">
-                <div className="btn" onClick={handleAddTask}>Add Task</div>
-                <div className="btn" onClick={toggleInput}>Close</div>
-              </div>
-            </div>
-          </>
-
-        )}
-        {showInput && type === "forList" && (
-          
-          <>
-            <div onBlur={handleBlur} className="addCardorList out">
-                <input 
-                  type="text" 
-                  placeholder="Enter List..." 
-                  value={inputValueList}
-                  autoFocus
-                  onChange={(e) => setInputValueList(e.target.value)}
-                />
-              <div className="display">
-                <div className="btn" onClick={handleAddList}>XXX Add List</div>
-                <button onClick={handleAddList}>Add List</button>
-                <div className="btn" onClick={toggleInput}>Close</div>
-              </div>
-            </div>
-          </>
-
-        )}
-        {!showInput && type === "forTask" && (
-          
-          <>
-            <div className="addCardorList">
-              <div className="display">
-                <div className="btn" onClick={toggleInput}>+</div>
-                <div className="btn" onClick={handleRemoveList}>x</div>
-                <div className="btn">...</div>
-              </div>
-            </div>
-          </>
-
-        )}
-        {!showInput && type === "forList" && (
-          
-          
-          <>
-            <div className="addCardorList out">
-              <div className="display">
-                <div className="btn" onClick={toggleInput}>+ Add List</div>
-                <div className="btn">...</div>
-              </div>
-            </div>
-          </>
-
-        )} */}
     </>
   )
 }
