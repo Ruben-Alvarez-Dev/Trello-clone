@@ -99,7 +99,7 @@ export const AddCardorList = ({ type, list, setData }) => {
         {showInput && type === "forList" && (
           
           <>
-            <div onBlur={handleBlur} className="addCardorList">
+            <div onBlur={handleBlur} className="addCardorList out">
                 <input 
                   type="text" 
                   placeholder="Enter task..." 
@@ -132,7 +132,7 @@ export const AddCardorList = ({ type, list, setData }) => {
           
           
           <>
-            <div className="addCardorList">
+            <div className="addCardorList out">
               <div className="display">
                 <div className="btn" onClick={toggleInput}>+ Add List</div>
                 <div className="btn">...</div>
