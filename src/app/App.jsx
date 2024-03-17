@@ -103,7 +103,12 @@ export const App = () => {
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
                                       >
-                                        {data.tasks.find(task => task.id === value).value}
+                                        <div className="task-title">
+                                          {data.tasks.find(task => task.id === value).value}
+                                        </div>
+                                        <div className="task-remove">
+                                          rem
+                                        </div>
                                       </div>
                                     )}
                                   </Draggable>
