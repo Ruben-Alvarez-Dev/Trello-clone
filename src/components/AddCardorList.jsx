@@ -15,8 +15,20 @@ export const AddCardorList = ({ type, list, setData }) => {
     parent.children[0].style.flexDirection = 'column';
     parent.children[1].style.display = 'none';
   }
+  const openListInput = (e) => {
+    const current = e.target;
+    const parent = e.target.parentElement;
+    parent.children[0].style.display = 'flex';
+    parent.children[0].style.flexDirection = 'column';
+    parent.children[1].style.display = 'none';
+  }
   const closeTaskInput = (e) => {
     const current = e.target;
+    const parent = e.target.parentElement.parentElement.parentElement;
+    parent.children[1].style.display = 'flex';
+    parent.children[0].style.display = 'none';
+  }
+  const closeListInput = (e) => {
     const parent = e.target.parentElement.parentElement.parentElement;
     parent.children[1].style.display = 'flex';
     parent.children[0].style.display = 'none';
@@ -61,17 +73,40 @@ export const AddCardorList = ({ type, list, setData }) => {
       
     }
   }
-  const openlistInput = (e) => {}
-  const removeList = () => {}
+  const addListInput = (e) => {
+    
+    if (inputValueList) {
+      localStorage.getItem('lists');
+      const storedLists = localStorage.getItem('lists');
+      const parsedLists = JSON.parse(storedLists);
+      const newList = {
+        id: v4(),
+        title: inputValueList,
+        value: [],
+      };
+      const updatedLists = [...parsedLists, newList];
+      localStorage.setItem('lists', JSON.stringify(updatedLists));
+      setInputValueList('');
+      setData(prevData => ({
+        ...prevData,
+        lists: updatedLists,
+      }));
+      closeListInput(e);
 
+    } else {
+      setInputValueList('');
+      closeListInput(e);
+  
+    }
+  }
   const handleBlur = (e) => {
-    setInputValueTask('');
-    setInputValueList('');
-
     const current = e.target;
     const parent = e.target.parentElement.parentElement;
     parent.children[1].style.display = 'flex';
     parent.children[0].style.display = 'none';
+    setInputValueTask('');
+    setInputValueList('');
+
   }
   const handleRemoveList = (event) => {
     event.stopPropagation();
@@ -85,10 +120,8 @@ export const AddCardorList = ({ type, list, setData }) => {
         ...prevData,
         lists: newList,
       }));
-}
-  const handleAddList = () => {
-
   }
+
   
   return (
     
@@ -97,7 +130,7 @@ export const AddCardorList = ({ type, list, setData }) => {
           type === "forTask" && (
             <>
               <div className="forTask">
-                  <div className="input_container">
+                  <div onBlur={handleBlur} className="input_container">
                         <input
                           className="input" 
                           type="text" 
@@ -105,7 +138,7 @@ export const AddCardorList = ({ type, list, setData }) => {
                           value={inputValueTask}
                           autoFocus
                           onChange={(e) => setInputValueTask(e.target.value)}
-                          onBlur={handleBlur}
+                          
                         />                      
                         <div className="button_bar">
                           <h3 onClick={addTaskInput}>New</h3>
@@ -129,14 +162,13 @@ export const AddCardorList = ({ type, list, setData }) => {
                           value={inputValueList}
                           autoFocus
                           onChange={(e) => setInputValueList(e.target.value)}
-                          onBlur={handleBlur}
                         />                      
                         <div className="button_bar">
-                          <h3 onClick={addTaskInput}>New</h3>
+                          <h3 onClick={addListInput}>New</h3>
                           <h3 onClick={closeTaskInput}>Close</h3>
                       </div>
                   </div>
-                <h3 onClick={openTaskInput}>Add a list</h3>
+                <h3 onClick={openListInput}>Add a list</h3>
               </div>
             </>
           )
