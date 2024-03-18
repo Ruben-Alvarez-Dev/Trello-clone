@@ -7,6 +7,7 @@ import { AddCardorList } from '../components/AddCardorList';
 
 export const App = () => {
 
+  const [editingListId, setEditingListId] = useState(null);
   const [data, setData] = useState({
     lists: initData().lists,
     tasks: initData().tasks,
@@ -120,6 +121,10 @@ export const App = () => {
       tasks: newTasks,
     }));
   } */
+  const handleChangeTitle = (listId) => {
+    setEditingListId(listId);
+  };
+
   return (
     
       <DragDropContext onDragEnd={onDragEnd}>
@@ -138,8 +143,30 @@ export const App = () => {
                     <div className="list" ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}>
-                      <div className="title">
-                        <div className="title-label">{list.title}</div>
+                      <div className="title" onDoubleClick={()=> handleChangeTitle(list.id)}>
+                        {editingListId === list.id ? (
+                          
+                          <input className='title-input'
+                            type="text"
+                            value={list.title}
+                            onChange={(e) => {
+                              const updatedLists = data.lists.map((l) => 
+                                l.id === list.id ? {...l, title: e.target.value} : l
+                              );
+                              setData(prevData => ({
+                                ...prevData,
+                                lists: updatedLists,
+                              }));
+                            }}
+                            onBlur={() => {
+                              setEditingListId(null)
+                              localStorage.setItem('lists', JSON.stringify(data.lists));
+                              }}
+                              autoFocus
+                            />
+                          ) : (
+                            <div className="title-label">{list.title}</div>
+                          )}
                         <div className="title-remove" onClick={handleRemoveList}>rem</div>                        
                       </div>
                         <Droppable droppableId={list.title} type="task">

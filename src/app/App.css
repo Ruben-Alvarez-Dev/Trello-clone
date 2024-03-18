@@ -45,7 +45,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
+  
+  
 }
 .title-label:hover{
   background-color: rgba(250, 235, 215, 0.3);
@@ -64,7 +65,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
+  
 }
 .title-remove:hover{
   background-color: rgba(255, 0, 0, 0.8);
@@ -73,9 +74,16 @@
 .title:hover .title-remove{
   /* opacity: 1; */
   display: flex;
+}
+.title-input{
+  background-color: rgba(250, 235, 215, 0.1);
+  border: 1px solid rgba(250, 235, 215, 0.1);
+  border-radius: 10px;
+  width: 100%;
+  height: 3em;
+  font-size: x-large;
   
 }
-
 
 .task{
   background-color: rgba(250, 235, 215, 0.1);
