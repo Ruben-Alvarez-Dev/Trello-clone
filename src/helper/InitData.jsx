@@ -28,9 +28,6 @@ export const initData = () => {
 
   localStorage.getItem("lists") || localStorage.setItem("lists", JSON.stringify(lists));
   localStorage.getItem("tasks") || localStorage.setItem("tasks", JSON.stringify(tasks));
-
-  lists = JSON.parse(localStorage.getItem("lists"));
-  tasks = JSON.parse(localStorage.getItem("tasks"));
-
-  return { lists, tasks };
+  
+  return;
 }

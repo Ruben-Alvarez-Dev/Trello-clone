@@ -6,17 +6,17 @@
       
     ],
     "tasks": [
-      { "id": "", "title" : "Task 1", "value": "Task 1" },
-      { "id": "", "title" : "Task 2", "value": "Task 2" },
-      { "id": "", "title" : "Task 3", "value": "Task 3" },
-      { "id": "", "title" : "Task 4", "value": "Task 4" },
-      { "id": "", "title" : "Task 5", "value": "Task 5" },
-      { "id": "", "title" : "Task 6", "value": "Task 6" },
-      { "id": "", "title" : "Task 7", "value": "Task 7" },
-      { "id": "", "title" : "Task 8", "value": "Task 8" },
-      { "id": "", "title" : "Task 9", "value": "Task 9" },
-      { "id": "", "title" : "Task 10", "value": "Task 10" },
-      { "id": "", "title" : "Task 11", "value": "Task 11" },
-      { "id": "", "title" : "Task 12", "value": "Task 12" }
+      { "id": "", "title" : "Task 1", "value": "Finish homework" },
+      { "id": "", "title" : "Task 2", "value": "Go for a run" },
+      { "id": "", "title" : "Task 3", "value": "Call mom" },
+      { "id": "", "title" : "Task 4", "value": "Read a book" },
+      { "id": "", "title" : "Task 5", "value": "Buy groceries" },
+      { "id": "", "title" : "Task 6", "value": "Clean the house" },
+      { "id": "", "title" : "Task 7", "value": "Write a blog post" },
+      { "id": "", "title" : "Task 8", "value": "Take a nap" },
+      { "id": "", "title" : "Task 9", "value": "Meet a friend for coffee" },
+      { "id": "", "title" : "Task 10", "value": "Learn a new skill" },
+      { "id": "", "title" : "Task 11", "value": "Plan a vacation" },
+      { "id": "", "title" : "Task 12", "value": "Organize files" }
     ]
   }
