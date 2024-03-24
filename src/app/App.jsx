@@ -39,10 +39,70 @@ export const App = () => {
   // ===============================================
 
   const onDragEnd = (result) => {
+    const { destination, source, draggableId, type } = result;
+  
+    if (!destination) {
+      return;
+    }
+  
+    if (type === 'list') {
+      const newLists = Array.from(lists);
+      const [removedList] = newLists.splice(source.index, 1);
+      newLists.splice(destination.index, 0, removedList);
+  
+      setLists(newLists);
+    }
+  
+    if (type === 'task') {
+      const sourceList = lists.find((list) => list.id === source.droppableId);
+      const destinationList = lists.find((list) => list.id === destination.droppableId);
+      const draggingTask = tasks.find((task) => task.id === draggableId);
+  
+      if (sourceList === destinationList) {
+        const newTaskIds = Array.from(sourceList.value);
+        const [removedTaskId] = newTaskIds.splice(source.index, 1);
+        newTaskIds.splice(destination.index, 0, removedTaskId);
+  
+        const newList = {
+          ...sourceList,
+          value: newTaskIds,
+        };
+  
+        const newLists = lists.map((list) => (list.id === sourceList.id ? newList : list));
+  
+        setLists(newLists);
+      } else {
+        const sourceTaskIds = Array.from(sourceList.value);
+        const [removedTaskId] = sourceTaskIds.splice(source.index, 1);
+  
+        const destinationTaskIds = Array.from(destinationList.value);
+        destinationTaskIds.splice(destination.index, 0, removedTaskId);
+  
+        const newSourceList = {
+          ...sourceList,
+          value: sourceTaskIds,
+        };
+  
+        const newDestinationList = {
+          ...destinationList,
+          value: destinationTaskIds,
+        };
+  
+        const newLists = lists.map((list) => {
+          if (list.id === sourceList.id) {
+            return newSourceList;
+          }
+          if (list.id === destinationList.id) {
+            return newDestinationList;
+          }
+          return list;
+        });
+  
+        setLists(newLists);
+      }
+    }
+  };
 
-    console.log(result);
-
-  }
   
   return (
     <DataContext.Provider value={{ lists, setLists, tasks, setTasks }}>

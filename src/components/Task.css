@@ -1,0 +1,47 @@
+.task{
+    background-color: rgba(250, 235, 215, 0.1);
+    border: 1px solid rgba(250, 235, 215, 0.1);
+    border-radius: 10px;
+    width: 12em;
+    height: 2em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 1em 0px 1em 0px;
+    position: relative;
+  }
+  .task:hover{
+    background-color: rgba(250, 235, 215, 0.3);
+    border: 1px solid rgba(250, 235, 215, 0.3);
+    cursor: pointer;
+  }
+  .task:hover .task-remove{
+    display: flex;
+  }
+  
+  .task-remove{
+    background-color: rgba(255, 0, 0, 0.15);
+    width: 20%;
+    height: 100%;
+    border-radius: 0 10px 10px 0px;
+    position: absolute;
+    right: 0;
+    
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .task-remove:hover{
+    background-color: rgba(255, 0, 0, 0.8);
+    cursor: pointer;
+  }
+  .task-remove:hover img{
+    display: flex;
+  }
+  .task-remove img {
+    height: 50%;
+    width: 50%;
+    filter: invert(1);
+    display: none;
+  }
