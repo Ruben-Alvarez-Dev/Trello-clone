@@ -15,8 +15,6 @@ export const List = ({ list, index }) => {
     const listIndex = lists.findIndex((item) => item.id === list.id);
     const updatedLists = [...lists.slice(0, listIndex), ...lists.slice(listIndex + 1)];
     setLists(updatedLists);
-
-    // Remove all tasks related to the list
     const updatedTasks = tasks.filter((task) => !list.value.includes(task.id));
     setTasks(updatedTasks);
   };
