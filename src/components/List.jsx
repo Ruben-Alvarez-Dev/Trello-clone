@@ -11,24 +11,29 @@ export const List = ({ list, index }) => {
   const listTasks = list.value.map((taskId) => tasks.find((task) => task.id === taskId)).filter(Boolean);
   const [ editable, setEditable ] = useState(false)
 
-  const handleRemoveList = () => {
-    // Add your logic here to handle removing the list
+  const handleRemoveList = (e) => {
+    const listIndex = lists.findIndex((item) => item.id === list.id);
+    const updatedLists = [...lists.slice(0, listIndex), ...lists.slice(listIndex + 1)];
+    setLists(updatedLists);
+
+    // Remove all tasks related to the list
+    const updatedTasks = tasks.filter((task) => !list.value.includes(task.id));
+    setTasks(updatedTasks);
   };
 
+  const handleEditTitle = () => {}
   
   
 
   return (
-    <div className="list" index={index}>
+    <div id={list.id} className="list" index={index}>
       <div className="title">
         {
           editable
             ? console.log('editable')
             : console.log('non editable')
-            
-
         }
-        <div className="title-label" onDoubleClick={}>{list.title}</div>
+        <div className="title-label" onDoubleClick={handleEditTitle}>{list.title}</div>
         <div className="title-remove" onClick={handleRemoveList}>
           <img src={trash} alt="Remove" />
         </div>
