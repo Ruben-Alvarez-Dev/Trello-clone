@@ -11,11 +11,11 @@ export const App = () => {
   // Vars and States
   // ===============================================
   
-  const [lists, setLists] = useState([]);
-  const [tasks, setTasks] = useState([]);
+  const [lists, setLists] = useState([]); // State to store the lists
+  const [tasks, setTasks] = useState([]); // State to store the tasks
 
   useEffect(() => {
-    // Cargar los datos de localStorage al iniciar la aplicación
+    // Load data from localStorage when the application starts
     const storedLists = localStorage.getItem('lists');
     const storedTasks = localStorage.getItem('tasks');
 
@@ -29,7 +29,7 @@ export const App = () => {
   }, []);
 
   useEffect(() => {
-    // Guardar los datos en localStorage cada vez que cambien
+    // Save the data to localStorage whenever they change
     localStorage.setItem('lists', JSON.stringify(lists));
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [lists, tasks]);
@@ -47,6 +47,7 @@ export const App = () => {
     }
   
     if (type === 'list') {
+      // Reorder the lists when a list is dragged and dropped
       const newLists = Array.from(lists);
       const [removedList] = newLists.splice(source.index, 1);
       newLists.splice(destination.index, 0, removedList);
@@ -55,11 +56,13 @@ export const App = () => {
     }
   
     if (type === 'task') {
+      // Reorder the tasks within a list or move tasks between lists
       const sourceList = lists.find((list) => list.id === source.droppableId);
       const destinationList = lists.find((list) => list.id === destination.droppableId);
       const draggingTask = tasks.find((task) => task.id === draggableId);
   
       if (sourceList === destinationList) {
+        // Reorder tasks within the same list
         const newTaskIds = Array.from(sourceList.value);
         const [removedTaskId] = newTaskIds.splice(source.index, 1);
         newTaskIds.splice(destination.index, 0, removedTaskId);
@@ -73,6 +76,7 @@ export const App = () => {
   
         setLists(newLists);
       } else {
+        // Move tasks between lists
         const sourceTaskIds = Array.from(sourceList.value);
         const [removedTaskId] = sourceTaskIds.splice(source.index, 1);
   
@@ -140,7 +144,4 @@ export const App = () => {
       </>
     </DataContext.Provider>
   );
-
-
 }
-

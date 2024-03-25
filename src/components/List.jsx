@@ -12,7 +12,8 @@ export const List = ({ list, index }) => {
   const [editable, setEditable] = useState(false);
   const [titleValue, setTitleValue] = useState(list.title);
 
-  const handleRemoveList = (e) => {
+  // Function to remove a list
+  const handleRemoveList = () => {
     const listIndex = lists.findIndex((item) => item.id === list.id);
     const updatedLists = [...lists.slice(0, listIndex), ...lists.slice(listIndex + 1)];
     setLists(updatedLists);
@@ -20,14 +21,17 @@ export const List = ({ list, index }) => {
     setTasks(updatedTasks);
   };
 
+  // Function to enable editing of the list title
   const handleEditTitle = () => {
     setEditable(true);
   };
 
+  // Function to handle changes in the list title input
   const handleTitleChange = (e) => {
     setTitleValue(e.target.value);
   };
 
+  // Function to handle blur event of the list title input
   const handleTitleBlur = () => {
     if (titleValue.trim() !== '') {
       const updatedLists = lists.map((item) => {
@@ -47,6 +51,7 @@ export const List = ({ list, index }) => {
     <div id={list.id} className="list" index={index}>
       <div className="title">
         {editable ? (
+          // Input field for editing the list title
           <input
             className='title-input'
             type="text"
@@ -56,10 +61,12 @@ export const List = ({ list, index }) => {
             autoFocus
           />
         ) : (
+          // Display the list title as a label
           <div className="title-label" onDoubleClick={handleEditTitle}>
             {list.title}
           </div>
         )}
+        {/* Button to remove the list */}
         <div className="title-remove" onClick={handleRemoveList}>
           <img src={trash} alt="Remove" />
         </div>
@@ -67,6 +74,7 @@ export const List = ({ list, index }) => {
       <Droppable droppableId={list.id} type="task">
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
+            {/* Render the tasks in the list */}
             {listTasks.map((task, taskIndex) => (
               <Draggable key={task.id} draggableId={task.id} index={taskIndex}>
                 {(provided) => (
@@ -84,6 +92,7 @@ export const List = ({ list, index }) => {
           </div>
         )}
       </Droppable>
+      {/* Component to add a new task or list */}
       <AddCardorList type="forTask" list={list} />
     </div>
   );
