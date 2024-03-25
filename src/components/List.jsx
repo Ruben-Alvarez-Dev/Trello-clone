@@ -4,6 +4,7 @@ import { DataContext } from '../contexts/DataContext';
 import trash from '../assets/trash.svg';
 import { Task } from './Task';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
+import { AddCardorList } from './AddCardorList';
 
 export const List = ({ list, index }) => {
   const { lists, setLists, tasks, setTasks } = useContext(DataContext);
@@ -53,6 +54,7 @@ export const List = ({ list, index }) => {
           </div>
         )}
       </Droppable>
+      <AddCardorList type="forTask" list={list}/>
     </div>
   );
 };

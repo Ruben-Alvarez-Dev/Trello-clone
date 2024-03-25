@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { DataContext } from '../contexts/DataContext';
 import { List } from '../components/List';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { AddCardorList } from '../components/AddCardorList';
 
 export const App = () => {
 
@@ -128,6 +129,7 @@ export const App = () => {
 
                         ))
                       }
+                      <AddCardorList type="forList" />
                     </div>
               {provided.placeholder}
               </div>
