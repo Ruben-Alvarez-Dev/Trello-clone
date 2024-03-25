@@ -73,7 +73,7 @@ export const AddCardorList = ({ type, list, setData }) => {
         title: inputValueList,
         value: [],
       };
-
+      
       setLists([...lists, newList]);
       setInputValueList('');
       closeListInput(e);
