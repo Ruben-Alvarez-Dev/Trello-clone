@@ -3,13 +3,12 @@ import { DataContext } from '../contexts/DataContext';
 import './AddCardorList.css';
 import { v4 } from 'uuid';
 
-export const AddCardorList = ({ type, list, setData }) => {
+export const AddCardorList = ({ type, list='' }) => {
   
   // Accessing data from the DataContext
   const { lists, setLists, tasks, setTasks } = useContext(DataContext);
 
   // State variables
-  const [showInput, setShowInput] = useState(false);
   const [inputValueTask, setInputValueTask] = useState('');
   const [inputValueList, setInputValueList] = useState('');
 
@@ -20,23 +19,19 @@ export const AddCardorList = ({ type, list, setData }) => {
   parent.children[0].children[0].style.display = 'flex';
   parent.children[1].style.display = 'none';
   }
-
   // Function to open list input
   const openListInput = (e) => {
-  const current = e.target;
   const parent = e.target.parentElement;
   parent.children[0].style.display = 'flex';
   parent.children[0].style.flexDirection = 'column';
   parent.children[1].style.display = 'none';
   }
-
   // Function to close task input
   const closeTaskInput = (e) => {
   const parent = e.target.parentElement.parentElement.parentElement;
   parent.children[0].style.display = 'none';
   parent.children[1].style.display = 'flex';
   }
-
   // Function to close list input
   const closeListInput = (e) => {
   const parent = e.target.parentElement.parentElement.parentElement;
@@ -82,9 +77,11 @@ export const AddCardorList = ({ type, list, setData }) => {
     value: [],
     };
     
-    setLists([...lists, newList]);
+    const updatedLists = [...lists];
+    updatedLists.push(newList);
+    setLists(updatedLists);
     setInputValueList('');
-    closeListInput(e);
+    /* closeListInput(e); */
   } else {
     setInputValueList('');
     closeListInput(e);
