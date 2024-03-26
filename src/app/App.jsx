@@ -13,6 +13,8 @@ export const App = () => {
   
   const [lists, setLists] = useState([]); // State to store the lists
   const [tasks, setTasks] = useState([]); // State to store the tasks
+  const [forceRender, setForceRender] = useState(false);
+
 
   useEffect(() => {
     // Load data from localStorage when the application starts
@@ -32,6 +34,8 @@ export const App = () => {
     // Save the data to localStorage whenever they change
     localStorage.setItem('lists', JSON.stringify(lists));
     localStorage.setItem('tasks', JSON.stringify(tasks));
+    
+    
   }, [lists, tasks]);
 
   
