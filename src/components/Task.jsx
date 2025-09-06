@@ -2,6 +2,7 @@ import './Task.css';
 import { useContext, useState } from "react";
 import { DataContext } from "../contexts/DataContext";
 import trash from "../assets/trash.svg";
+import { UI_STRINGS } from '../constants';
 
 export const Task = ({ task, taskIndex }) => {
   // Accessing the data from the DataContext
@@ -81,7 +82,7 @@ export const Task = ({ task, taskIndex }) => {
       )}
       {/* Render the remove button */}
       <div className="task-remove" onClick={handleRemoveTask}>
-        <img src={trash} alt="Remove" />
+        <img src={trash} alt={UI_STRINGS.REMOVE} />
       </div>
     </div>
   );

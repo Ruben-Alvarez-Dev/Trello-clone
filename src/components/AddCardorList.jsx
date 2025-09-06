@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { DataContext } from '../contexts/DataContext';
 import './AddCardorList.css';
 import { v4 } from 'uuid';
+import { UI_STRINGS, CSS_CLASSES } from '../constants';
 
 export const AddCardorList = ({ type, list = '' }) => {
   
@@ -105,19 +106,19 @@ export const AddCardorList = ({ type, list = '' }) => {
                   <input
                     className="input" 
                     type="text" 
-                    placeholder="Enter task..." 
+                    placeholder={UI_STRINGS.ENTER_TASK} 
                     value={inputValueTask}
                     autoFocus
                     onChange={(e) => setInputValueTask(e.target.value)}
                   />                      
                 </form>
                 <div className="button_bar">
-                  <h3 onClick={addTaskInput}>New</h3>
-                  <h3 onClick={closeTaskInput}>Close</h3>
+                  <h3 onClick={addTaskInput}>{UI_STRINGS.NEW}</h3>
+                  <h3 onClick={closeTaskInput}>{UI_STRINGS.CLOSE}</h3>
                 </div>
               </div>
             ) : (
-              <h3 onClick={openTaskInput}>Add a task</h3>
+              <h3 onClick={openTaskInput}>{UI_STRINGS.ADD_TASK}</h3>
             )}
           </div>
         </>
@@ -132,19 +133,19 @@ export const AddCardorList = ({ type, list = '' }) => {
                   <input
                     className="input" 
                     type="text" 
-                    placeholder="Enter list name..." 
+                    placeholder={UI_STRINGS.ENTER_LIST} 
                     value={inputValueList}
                     autoFocus
                     onChange={(e) => setInputValueList(e.target.value)}
                   />    
                 </form>                  
                 <div className="button_bar">
-                  <h3 onClick={addListInput}>New</h3>
-                  <h3 onClick={closeListInput}>Close</h3>
+                  <h3 onClick={addListInput}>{UI_STRINGS.NEW}</h3>
+                  <h3 onClick={closeListInput}>{UI_STRINGS.CLOSE}</h3>
                 </div>
               </div>
             ) : (
-              <h3 onClick={openListInput}>Add a list</h3>
+              <h3 onClick={openListInput}>{UI_STRINGS.ADD_LIST}</h3>
             )}
           </div>
         </>
