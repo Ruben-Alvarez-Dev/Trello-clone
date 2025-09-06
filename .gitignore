@@ -29,6 +29,25 @@ plan/
 /.rules
 .rules/
 
+# AI assistance tools - NEVER commit
+scripts/auto-*
+*.audit
+*-analysis.*
+*-audit.*
+ai-*
+claude-*
+gpt-*
+generated-*
+bulk-*
+mass-*
+
+# Internal development - NEVER commit  
+/.internal
+/analysis
+/tools
+/ai-tools
+/.ai
+
 # System files
 .DS_Store
 .DS_Store?
