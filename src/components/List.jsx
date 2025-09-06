@@ -5,6 +5,7 @@ import trash from '../assets/trash.svg';
 import { Task } from './Task';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { AddCardorList } from './AddCardorList';
+import { UI_STRINGS } from '../constants';
 
 export const List = ({ list, index }) => {
   const { lists, setLists, tasks, setTasks } = useContext(DataContext);
@@ -68,7 +69,7 @@ export const List = ({ list, index }) => {
         )}
         {/* Button to remove the list */}
         <div className="title-remove" onClick={handleRemoveList}>
-          <img src={trash} alt="Remove" />
+          <img src={trash} alt={UI_STRINGS.REMOVE} />
         </div>
       </div>
       <Droppable droppableId={list.id} type="task">

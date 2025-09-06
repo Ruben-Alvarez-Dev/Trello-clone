@@ -5,6 +5,7 @@ import { List } from '../components/List';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { AddCardorList } from '../components/AddCardorList';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { APP_CONFIG } from '../constants';
 
 export const App = () => {
 
@@ -12,8 +13,8 @@ export const App = () => {
   // State Management with localStorage persistence
   // ===============================================
   
-  const [lists, setLists] = useLocalStorage('lists', []);
-  const [tasks, setTasks] = useLocalStorage('tasks', []);
+  const [lists, setLists] = useLocalStorage(APP_CONFIG.STORAGE_KEYS.LISTS, []);
+  const [tasks, setTasks] = useLocalStorage(APP_CONFIG.STORAGE_KEYS.TASKS, []);
 
   // ===============================================  
   // Drag and Drop Helper Functions
@@ -99,7 +100,7 @@ export const App = () => {
   return (
     <DataContext.Provider value={{ lists, setLists, tasks, setTasks }}>
       <>
-        <h1>Trello Clon App</h1>
+        <h1>{APP_CONFIG.TITLE}</h1>
 
           <DragDropContext onDragEnd={onDragEnd}> 
           <Droppable droppableId="all-lists" direction="horizontal" type="list">            
