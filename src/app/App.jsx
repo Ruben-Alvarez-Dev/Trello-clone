@@ -1,11 +1,12 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DataContext } from '../contexts/DataContext';
 import { List } from '../components/List';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { AddCardorList } from '../components/AddCardorList';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { APP_CONFIG } from '../constants';
+import { initData } from '../helper/InitData';
 
 export const App = () => {
 
@@ -15,6 +16,18 @@ export const App = () => {
   
   const [lists, setLists] = useLocalStorage(APP_CONFIG.STORAGE_KEYS.LISTS, []);
   const [tasks, setTasks] = useLocalStorage(APP_CONFIG.STORAGE_KEYS.TASKS, []);
+
+  // Initialize default data if localStorage is empty
+  useEffect(() => {
+    if (lists.length === 0 && tasks.length === 0) {
+      initData();
+      // Force reload data after initialization
+      const storedLists = JSON.parse(localStorage.getItem(APP_CONFIG.STORAGE_KEYS.LISTS) || '[]');
+      const storedTasks = JSON.parse(localStorage.getItem(APP_CONFIG.STORAGE_KEYS.TASKS) || '[]');
+      setLists(storedLists);
+      setTasks(storedTasks);
+    }
+  }, []);
 
   // ===============================================  
   // Drag and Drop Helper Functions
