@@ -8,6 +8,11 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 import { APP_CONFIG } from '../constants';
 import { initData } from '../helper/InitData';
 
+/**
+ * Main Trello Clone application component
+ * Manages global state and drag-and-drop functionality for lists and tasks
+ * @returns {JSX.Element} The main app component with drag-drop context
+ */
 export const App = () => {
 
   // ===============================================
@@ -33,7 +38,13 @@ export const App = () => {
   // Drag and Drop Helper Functions
   // ===============================================
 
-  // Handle reordering lists horizontally
+  /**
+   * Handles horizontal reordering of lists
+   * @param {Array} lists - Current lists array
+   * @param {Object} source - Source position from drag event
+   * @param {Object} destination - Destination position from drag event
+   * @returns {Array} New lists array with updated order
+   */
   const handleListReorder = (lists, source, destination) => {
     const newLists = Array.from(lists);
     const [removedList] = newLists.splice(source.index, 1);
@@ -41,7 +52,14 @@ export const App = () => {
     return newLists;
   };
 
-  // Handle reordering tasks within the same list
+  /**
+   * Handles reordering tasks within the same list
+   * @param {Array} lists - Current lists array
+   * @param {Object} sourceList - The list containing the task being moved
+   * @param {Object} source - Source position from drag event
+   * @param {Object} destination - Destination position from drag event
+   * @returns {Array} Updated lists array with reordered tasks
+   */
   const handleTaskReorderSameList = (lists, sourceList, source, destination) => {
     const newTaskIds = Array.from(sourceList.value);
     const [removedTaskId] = newTaskIds.splice(source.index, 1);
@@ -55,7 +73,15 @@ export const App = () => {
     return lists.map((list) => (list.id === sourceList.id ? newList : list));
   };
 
-  // Handle moving tasks between different lists
+  /**
+   * Handles moving tasks between different lists
+   * @param {Array} lists - Current lists array
+   * @param {Object} sourceList - Source list containing the task
+   * @param {Object} destinationList - Destination list to receive the task
+   * @param {Object} source - Source position from drag event
+   * @param {Object} destination - Destination position from drag event
+   * @returns {Array} Updated lists array with task moved between lists
+   */
   const handleTaskMoveBetweenLists = (lists, sourceList, destinationList, source, destination) => {
     const sourceTaskIds = Array.from(sourceList.value);
     const [removedTaskId] = sourceTaskIds.splice(source.index, 1);
@@ -84,6 +110,14 @@ export const App = () => {
   // Main Functions
   // ===============================================
 
+  /**
+   * Main drag-and-drop event handler
+   * Routes drag events to appropriate handler functions based on type
+   * @param {Object} result - Drag result object from react-beautiful-dnd
+   * @param {Object} result.destination - Drop destination
+   * @param {Object} result.source - Drag source
+   * @param {string} result.type - Type of item being dragged ('list' or 'task')
+   */
   const onDragEnd = (result) => {
     const { destination, source, type } = result;
 
