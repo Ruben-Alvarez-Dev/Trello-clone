@@ -1,44 +1,20 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { DataContext } from '../contexts/DataContext';
 import { List } from '../components/List';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { AddCardorList } from '../components/AddCardorList';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 export const App = () => {
 
   // ===============================================
-  // Vars and States
+  // State Management with localStorage persistence
   // ===============================================
   
-  const [lists, setLists] = useState([]); // State to store the lists
-  const [tasks, setTasks] = useState([]); // State to store the tasks
-  const [forceRender, setForceRender] = useState(false);
+  const [lists, setLists] = useLocalStorage('lists', []);
+  const [tasks, setTasks] = useLocalStorage('tasks', []);
 
-
-  useEffect(() => {
-    // Load data from localStorage when the application starts
-    const storedLists = localStorage.getItem('lists');
-    const storedTasks = localStorage.getItem('tasks');
-
-    if (storedLists) {
-      setLists(JSON.parse(storedLists));
-    }
-
-    if (storedTasks) {
-      setTasks(JSON.parse(storedTasks));
-    }
-  }, []);
-
-  useEffect(() => {
-    // Save the data to localStorage whenever they change
-    localStorage.setItem('lists', JSON.stringify(lists));
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    
-    
-  }, [lists, tasks]);
-
-  
   // ===============================================  
   // Drag and Drop Helper Functions
   // ===============================================
