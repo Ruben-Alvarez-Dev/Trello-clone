@@ -40,73 +40,80 @@ export const App = () => {
 
   
   // ===============================================  
-  // Functions
+  // Drag and Drop Helper Functions
+  // ===============================================
+
+  // Handle reordering lists horizontally
+  const handleListReorder = (lists, source, destination) => {
+    const newLists = Array.from(lists);
+    const [removedList] = newLists.splice(source.index, 1);
+    newLists.splice(destination.index, 0, removedList);
+    return newLists;
+  };
+
+  // Handle reordering tasks within the same list
+  const handleTaskReorderSameList = (lists, sourceList, source, destination) => {
+    const newTaskIds = Array.from(sourceList.value);
+    const [removedTaskId] = newTaskIds.splice(source.index, 1);
+    newTaskIds.splice(destination.index, 0, removedTaskId);
+
+    const newList = {
+      ...sourceList,
+      value: newTaskIds,
+    };
+
+    return lists.map((list) => (list.id === sourceList.id ? newList : list));
+  };
+
+  // Handle moving tasks between different lists
+  const handleTaskMoveBetweenLists = (lists, sourceList, destinationList, source, destination) => {
+    const sourceTaskIds = Array.from(sourceList.value);
+    const [removedTaskId] = sourceTaskIds.splice(source.index, 1);
+
+    const destinationTaskIds = Array.from(destinationList.value);
+    destinationTaskIds.splice(destination.index, 0, removedTaskId);
+
+    const newSourceList = {
+      ...sourceList,
+      value: sourceTaskIds,
+    };
+
+    const newDestinationList = {
+      ...destinationList,
+      value: destinationTaskIds,
+    };
+
+    return lists.map((list) => {
+      if (list.id === sourceList.id) return newSourceList;
+      if (list.id === destinationList.id) return newDestinationList;
+      return list;
+    });
+  };
+
+  // ===============================================  
+  // Main Functions
   // ===============================================
 
   const onDragEnd = (result) => {
-    const { destination, source, draggableId, type } = result;
-  
-    if (!destination) {
+    const { destination, source, type } = result;
+
+    if (!destination) return;
+
+    if (type === 'list') {
+      const newLists = handleListReorder(lists, source, destination);
+      setLists(newLists);
       return;
     }
-  
-    if (type === 'list') {
-      // Reorder the lists when a list is dragged and dropped
-      const newLists = Array.from(lists);
-      const [removedList] = newLists.splice(source.index, 1);
-      newLists.splice(destination.index, 0, removedList);
-  
-      setLists(newLists);
-    }
-  
+
     if (type === 'task') {
-      // Reorder the tasks within a list or move tasks between lists
       const sourceList = lists.find((list) => list.id === source.droppableId);
       const destinationList = lists.find((list) => list.id === destination.droppableId);
-      const draggingTask = tasks.find((task) => task.id === draggableId);
-  
+
       if (sourceList === destinationList) {
-        // Reorder tasks within the same list
-        const newTaskIds = Array.from(sourceList.value);
-        const [removedTaskId] = newTaskIds.splice(source.index, 1);
-        newTaskIds.splice(destination.index, 0, removedTaskId);
-  
-        const newList = {
-          ...sourceList,
-          value: newTaskIds,
-        };
-  
-        const newLists = lists.map((list) => (list.id === sourceList.id ? newList : list));
-  
+        const newLists = handleTaskReorderSameList(lists, sourceList, source, destination);
         setLists(newLists);
       } else {
-        // Move tasks between lists
-        const sourceTaskIds = Array.from(sourceList.value);
-        const [removedTaskId] = sourceTaskIds.splice(source.index, 1);
-  
-        const destinationTaskIds = Array.from(destinationList.value);
-        destinationTaskIds.splice(destination.index, 0, removedTaskId);
-  
-        const newSourceList = {
-          ...sourceList,
-          value: sourceTaskIds,
-        };
-  
-        const newDestinationList = {
-          ...destinationList,
-          value: destinationTaskIds,
-        };
-  
-        const newLists = lists.map((list) => {
-          if (list.id === sourceList.id) {
-            return newSourceList;
-          }
-          if (list.id === destinationList.id) {
-            return newDestinationList;
-          }
-          return list;
-        });
-  
+        const newLists = handleTaskMoveBetweenLists(lists, sourceList, destinationList, source, destination);
         setLists(newLists);
       }
     }
@@ -148,4 +155,4 @@ export const App = () => {
       </>
     </DataContext.Provider>
   );
-}
+};
