@@ -1,0 +1,63 @@
+name: commit-message-lint
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check commit messages for banned patterns
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+
+          if [[ "${EVENT_NAME}" == "pull_request" ]]; then
+            RANGE="${PR_BASE}..${PR_HEAD}"
+          else
+            RANGE="${BEFORE}..${AFTER}"
+          fi
+
+          if [[ -z "${BEFORE:-}" || "${BEFORE}" =~ ^0+$ ]]; then
+            RANGE="${AFTER}"
+          fi
+
+          echo "Checking range: ${RANGE}"
+          COMMITS=$(git rev-list "${RANGE}" || true)
+          if [[ -z "${COMMITS}" ]]; then
+            echo "No commits to check."
+            exit 0
+          fi
+
+          FAIL=0
+          while read -r c; do
+            MSG=$(git log -n 1 --pretty=%B "$c")
+            if echo "$MSG" | grep -qiE 'Generated with \[Claude Code\]'; then
+              echo "::error title=Banned phrase found::Commit $c contains 'Generated with [Claude Code]'"
+              FAIL=1
+            fi
+            if echo "$MSG" | grep -qiE '^[[:space:]]*Co-[Aa]uthored-[Bb]y:[[:space:]]*Claude'; then
+              echo "::error title=Banned co-author found::Commit $c contains 'Co-Authored-By: Claude'"
+              FAIL=1
+            fi
+          done <<< "${COMMITS}"
+
+          if [[ "${FAIL}" -ne 0 ]]; then
+            echo "Banned patterns detected in commit messages."
+            exit 1
+          fi
+
+          echo "Commit messages clean."
