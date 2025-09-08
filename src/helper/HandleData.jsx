@@ -4,23 +4,25 @@
  * @returns {{lists: Array, tasks: Array}} Parsed data from storage
  */
 export const readData = () => {
-  
-    let rawLists = localStorage.getItem('lists') || console.log('No lists found');
-    let rawTasks = localStorage.getItem('tasks') || console.log('No tasks found');
+  const rawLists = localStorage.getItem('lists');
+  const rawTasks = localStorage.getItem('tasks');
 
-    let lists = [];
-    let tasks = [];
-    try {
-      lists = JSON.parse(rawLists);
-      tasks = JSON.parse(rawTasks);
-    } catch (e) {
-      console.error('Invalid JSON in localStorage. Resetting.', e);
-      lists = [];
-      tasks = [];
-    }
-    
-    /* console.log(lists);
-    console.log(tasks); */
+  let lists = [];
+  let tasks = [];
 
-    return { lists, tasks };
+  try {
+    lists = rawLists ? JSON.parse(rawLists) : [];
+  } catch (e) {
+    console.error('Invalid lists JSON in localStorage. Resetting.', e);
+    lists = [];
+  }
+
+  try {
+    tasks = rawTasks ? JSON.parse(rawTasks) : [];
+  } catch (e) {
+    console.error('Invalid tasks JSON in localStorage. Resetting.', e);
+    tasks = [];
+  }
+
+  return { lists, tasks };
 }

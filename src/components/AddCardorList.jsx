@@ -20,6 +20,14 @@ import { UI_STRINGS, CSS_CLASSES } from '../constants';
  * @param {('forTask'|'forList')} props.type - Selects task or list creation mode.
  * @param {List} [props.list] - Target list when adding a task.
  * @returns {JSX.Element}
+ *
+ * @example
+ * // Add task input for a specific list
+ * <AddCardorList type="forTask" list={{ id: 'list-1', title: 'To Do', value: [] }} />
+ *
+ * @example
+ * // Add new list input
+ * <AddCardorList type="forList" />
  */
 export const AddCardorList = ({ type, list = '' }) => {
   

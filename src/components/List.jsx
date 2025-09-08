@@ -8,12 +8,15 @@ import { AddCardorList } from './AddCardorList';
 import { UI_STRINGS } from '../constants';
 
 /**
- * List component that renders a draggable list containing tasks
- * Provides functionality for editing list title, removing lists, and managing tasks
+ * List component that renders a draggable list containing tasks.
+ * Provides functionality for editing list title, removing lists, and managing tasks.
  * @param {Object} props - Component props
- * @param {Object} props.list - List object containing id, title, and value (task IDs)
+ * @param {List} props.list - List object containing id, title, and value (task IDs)
  * @param {number} props.index - Index of the list for drag and drop ordering
  * @returns {JSX.Element} Draggable list component with tasks and controls
+ *
+ * @example
+ * <List list={{ id: 'list-1', title: 'To Do', value: [] }} index={0} />
  */
 export const List = ({ list, index }) => {
   const { lists, setLists, tasks, setTasks } = useContext(DataContext);
@@ -21,10 +24,7 @@ export const List = ({ list, index }) => {
   const [editable, setEditable] = useState(false);
   const [titleValue, setTitleValue] = useState(list.title);
 
-  /**
-   * Removes the current list and all its associated tasks
-   * @function handleRemoveList
-   */
+  /** Removes the current list and all its associated tasks. */
   const handleRemoveList = () => {
     const listIndex = lists.findIndex((item) => item.id === list.id);
     const updatedLists = [...lists.slice(0, listIndex), ...lists.slice(listIndex + 1)];
@@ -33,27 +33,17 @@ export const List = ({ list, index }) => {
     setTasks(updatedTasks);
   };
 
-  /**
-   * Enables editing mode for the list title
-   * @function handleEditTitle
-   */
+  /** Enables editing mode for the list title. */
   const handleEditTitle = () => {
     setEditable(true);
   };
 
-  /**
-   * Handles changes in the list title input field
-   * @function handleTitleChange
-   * @param {Event} e - Input change event
-   */
+  /** Update temporary title value while editing. */
   const handleTitleChange = (e) => {
     setTitleValue(e.target.value);
   };
 
-  /**
-   * Handles blur event of the list title input and saves changes
-   * @function handleTitleBlur
-   */
+  /** Persist title changes on blur, or revert if empty. */
   const handleTitleBlur = () => {
     if (titleValue.trim() !== '') {
       const updatedLists = lists.map((item) => {

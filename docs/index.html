@@ -34,7 +34,7 @@
     <input type="text" id="nav-search" placeholder="Search" />
     
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/Ruben-Alvarez-Dev/Trello-clone" target="_blank" class="menu-item" id="website_link" >Github</a></h2><h3>Modules</h3><ul><li><a href="module-constants_index.html">constants/index</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-constants_index-APP_CONFIG.html">APP_CONFIG</a></li><li><a href="module-constants_index-CSS_CLASSES.html">CSS_CLASSES</a></li><li><a href="module-constants_index-UI_STRINGS.html">UI_STRINGS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddCardorList">AddCardorList</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#DataContext">DataContext</a></li><li><a href="global.html#DataContextValue">DataContextValue</a></li><li><a href="global.html#List">List</a></li><li><a href="global.html#Task">Task</a></li><li><a href="global.html#handleEditTitle">handleEditTitle</a></li><li><a href="global.html#handleRemoveList">handleRemoveList</a></li><li><a href="global.html#handleTitleBlur">handleTitleBlur</a></li><li><a href="global.html#handleTitleChange">handleTitleChange</a></li><li><a href="global.html#initData">initData</a></li><li><a href="global.html#readData">readData</a></li><li><a href="global.html#useLocalStorage">useLocalStorage</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/Ruben-Alvarez-Dev/Trello-clone" target="_blank" class="menu-item" id="website_link" >Github</a></h2><h3>Modules</h3><ul><li><a href="module-constants_index.html">constants/index</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-constants_index-APP_CONFIG.html">APP_CONFIG</a></li><li><a href="module-constants_index-CSS_CLASSES.html">CSS_CLASSES</a></li><li><a href="module-constants_index-UI_STRINGS.html">UI_STRINGS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddCardorList">AddCardorList</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#DataContext">DataContext</a></li><li><a href="global.html#DataContextValue">DataContextValue</a></li><li><a href="global.html#List">List</a></li><li><a href="global.html#Task">Task</a></li><li><a href="global.html#initData">initData</a></li><li><a href="global.html#readData">readData</a></li><li><a href="global.html#useLocalStorage">useLocalStorage</a></li></ul>
     
 </nav>
 
@@ -212,7 +212,87 @@ npm run commit
 <li>React team for the amazing framework</li>
 </ul>
 <hr>
-<p>If you found this project helpful, please give it a star!</p></article>
+<p>If you found this project helpful, please give it a star!</p>
+<h2>🧱 Architecture Overview</h2>
+<ul>
+<li>Data model
+<ul>
+<li>List: <code>{ id: string, title: string, value: string[] }</code> where <code>value</code> holds task ids</li>
+<li>Task: <code>{ id: string, value: string }</code></li>
+</ul>
+</li>
+<li>State management
+<ul>
+<li>React Context (<code>DataContext</code>) expone <code>{ lists, setLists, tasks, setTasks }</code></li>
+<li>Persistencia vía <code>useLocalStorage(key, initialValue)</code></li>
+</ul>
+</li>
+<li>Drag &amp; Drop
+<ul>
+<li><code>react-beautiful-dnd</code> con <code>DragDropContext</code>, <code>Droppable</code> (listas/tareas) y <code>Draggable</code> (listas/tareas)</li>
+<li>Reordenación horizontal de listas y vertical de tareas; mover tareas entre listas</li>
+</ul>
+</li>
+<li>Inicialización
+<ul>
+<li><code>initData()</code> carga datos de <code>src/data/data.json</code> en <code>localStorage</code> si no existen</li>
+</ul>
+</li>
+</ul>
+<h2>🔧 Component Responsibilities</h2>
+<ul>
+<li>App
+<ul>
+<li>Orquesta el estado global, inicializa datos, implementa <code>onDragEnd</code></li>
+<li>Helpers puros: reordenar listas, reordenar tareas, mover tareas entre listas</li>
+</ul>
+</li>
+<li>List
+<ul>
+<li>Renderiza una lista con su título editable y acciones</li>
+<li>Mapea <code>list.value</code> (ids) → tareas y renderiza <code>Task</code></li>
+</ul>
+</li>
+<li>Task
+<ul>
+<li>Permite editar el contenido y eliminar la tarea</li>
+</ul>
+</li>
+<li>AddCardorList
+<ul>
+<li>Modo <code>forTask</code>: crea tareas dentro de una lista</li>
+<li>Modo <code>forList</code>: crea nuevas listas</li>
+</ul>
+</li>
+</ul>
+<h2>🔄 Drag-and-Drop Flow</h2>
+<ol>
+<li>Usuario arrastra lista o tarea → <code>onDragEnd(result)</code> en <code>App</code></li>
+<li>Si <code>type === 'list'</code> → <code>handleListReorder</code></li>
+<li>Si <code>type === 'task'</code>:
+<ul>
+<li>Misma lista → <code>handleTaskReorderSameList</code></li>
+<li>Listas distintas → <code>handleTaskMoveBetweenLists</code></li>
+</ul>
+</li>
+<li><code>setLists</code> persiste en estado + localStorage</li>
+</ol>
+<h2>🧪 Usage Examples</h2>
+<pre class="prettyprint source lang-jsx"><code>// Add a list input
+&lt;AddCardorList type=&quot;forList&quot; />
+
+// Add a task input inside a list
+&lt;AddCardorList type=&quot;forTask&quot; list={{ id: 'list-1', title: 'To Do', value: [] }} />
+
+// Render a list
+&lt;List list={{ id: 'list-1', title: 'To Do', value: ['t1'] }} index={0} />
+
+// Render a task
+&lt;Task task={{ id: 't1', value: 'Buy milk' }} index={0} />
+
+// Persisted state
+const [items, setItems] = useLocalStorage('items', []);
+</code></pre></article>
     </section>
 
 
@@ -227,7 +307,7 @@ npm run commit
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 05:50:47 GMT+0200 (hora de verano de Europa central) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 08:47:01 GMT+0200 (hora de verano de Europa central) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

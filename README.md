@@ -159,3 +159,59 @@ This project is open source under the [MIT License](LICENSE).
 ---
 
 If you found this project helpful, please give it a star!
+
+## 🧱 Architecture Overview
+
+- Data model
+  - List: `{ id: string, title: string, value: string[] }` where `value` holds task ids
+  - Task: `{ id: string, value: string }`
+- State management
+  - React Context (`DataContext`) expone `{ lists, setLists, tasks, setTasks }`
+  - Persistencia vía `useLocalStorage(key, initialValue)`
+- Drag & Drop
+  - `react-beautiful-dnd` con `DragDropContext`, `Droppable` (listas/tareas) y `Draggable` (listas/tareas)
+  - Reordenación horizontal de listas y vertical de tareas; mover tareas entre listas
+- Inicialización
+  - `initData()` carga datos de `src/data/data.json` en `localStorage` si no existen
+
+## 🔧 Component Responsibilities
+
+- App
+  - Orquesta el estado global, inicializa datos, implementa `onDragEnd`
+  - Helpers puros: reordenar listas, reordenar tareas, mover tareas entre listas
+- List
+  - Renderiza una lista con su título editable y acciones
+  - Mapea `list.value` (ids) → tareas y renderiza `Task`
+- Task
+  - Permite editar el contenido y eliminar la tarea
+- AddCardorList
+  - Modo `forTask`: crea tareas dentro de una lista
+  - Modo `forList`: crea nuevas listas
+
+## 🔄 Drag-and-Drop Flow
+
+1. Usuario arrastra lista o tarea → `onDragEnd(result)` en `App`
+2. Si `type === 'list'` → `handleListReorder`
+3. Si `type === 'task'`:
+   - Misma lista → `handleTaskReorderSameList`
+   - Listas distintas → `handleTaskMoveBetweenLists`
+4. `setLists` persiste en estado + localStorage
+
+## 🧪 Usage Examples
+
+```jsx
+// Add a list input
+<AddCardorList type="forList" />
+
+// Add a task input inside a list
+<AddCardorList type="forTask" list={{ id: 'list-1', title: 'To Do', value: [] }} />
+
+// Render a list
+<List list={{ id: 'list-1', title: 'To Do', value: ['t1'] }} index={0} />
+
+// Render a task
+<Task task={{ id: 't1', value: 'Buy milk' }} index={0} />
+
+// Persisted state
+const [items, setItems] = useLocalStorage('items', []);
+```
