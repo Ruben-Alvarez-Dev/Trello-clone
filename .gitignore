@@ -37,3 +37,6 @@ CHANGELOG.md
 # Local tools and rewrite rules
 .git-filter-rules/
 .tools/
+
+# Local framework (not tracked)
+/framework/
