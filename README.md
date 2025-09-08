@@ -89,7 +89,7 @@ src/
 4. Edit: double-click on any task or list title
 5. Delete: click the trash icon on tasks or lists
 
-## 🏗️ Architecture Highlights
+## 🏗️ Architecture
 
 ### Custom Hooks
 - `useLocalStorage`: localStorage synchronization with error handling
@@ -100,7 +100,22 @@ src/
 - Separation of concerns between components
 - Centralized constants management
 
-### Performance Optimizations
+### Data Model
+- List: `{ id: string, title: string, value: string[] }` where `value` holds task ids
+- Task: `{ id: string, value: string }`
+
+### State Management
+- React Context (`DataContext`) exposes `{ lists, setLists, tasks, setTasks }`
+- Persistence via `useLocalStorage(key, initialValue)`
+
+### Drag & Drop
+- `react-beautiful-dnd` with `DragDropContext`, `Droppable` (lists/tasks) and `Draggable` (lists/tasks)
+- Horizontal list reordering and vertical task reordering; move tasks between lists
+
+### Initialization
+- `initData()` seeds from `src/data/data.json` into `localStorage` when missing
+
+### Performance
 - Efficient drag-and-drop handling
 - Minimal re-renders with proper state management
 - Lazy loading where applicable
@@ -140,7 +155,7 @@ This project follows conventional commits:
 
 ## 📄 License
 
-This project is open source under the [MIT License](LICENSE).
+This project is open source under the MIT License.
 
 ## 👤 Author
 
@@ -153,25 +168,6 @@ This project is open source under the [MIT License](LICENSE).
 - React Beautiful DND for drag-and-drop functionality
 - Vite for the excellent development experience
 - React team for the amazing framework
-
----
-
-If you found this project helpful, please give it a star!
-
-## 🧱 Architecture Overview
-
-- Data model
-  - List: `{ id: string, title: string, value: string[] }` where `value` holds task ids
-  - Task: `{ id: string, value: string }`
-- State management
-  - React Context (`DataContext`) exposes `{ lists, setLists, tasks, setTasks }`
-  - Persistence via `useLocalStorage(key, initialValue)`
-- Drag & Drop
-  - `react-beautiful-dnd` with `DragDropContext`, `Droppable` (lists/tasks) and `Draggable` (lists/tasks)
-  - Horizontal list reordering and vertical task reordering; move tasks between lists
-- Initialization
-  - `initData()` seeds from `src/data/data.json` into `localStorage` when missing
-
 ## 🔧 Component Responsibilities
 
 - App
@@ -214,4 +210,6 @@ If you found this project helpful, please give it a star!
 const [items, setItems] = useLocalStorage('items', []);
 ```
 
-<!-- Internal contributor guidance intentionally removed from public README -->
+---
+
+If you found this project helpful, please give it a star!
