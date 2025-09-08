@@ -62,8 +62,6 @@ npm run preview
 # Lint code
 npm run lint
 
-# Auto-commit (custom script)
-npm run commit
 ```
 
 ## 🗂️ Project Structure
