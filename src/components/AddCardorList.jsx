@@ -4,6 +4,14 @@ import './AddCardorList.css';
 import { v4 } from 'uuid';
 import { UI_STRINGS, CSS_CLASSES } from '../constants';
 
+/**
+ * AddCardorList component for adding new tasks or lists
+ * Displays different UI based on type prop and handles form submission
+ * @param {Object} props - Component props
+ * @param {string} props.type - Type of item to add ('task' or 'list')
+ * @param {string} [props.list=''] - List ID when adding tasks to specific list
+ * @returns {JSX.Element} Form component for adding cards or lists
+ */
 export const AddCardorList = ({ type, list = '' }) => {
   
   // Accessing data from the DataContext

@@ -4,6 +4,14 @@ import { DataContext } from "../contexts/DataContext";
 import trash from "../assets/trash.svg";
 import { UI_STRINGS } from '../constants';
 
+/**
+ * Task component that renders individual draggable tasks within lists
+ * Provides functionality for editing task content and removing tasks
+ * @param {Object} props - Component props
+ * @param {Object} props.task - Task object containing id, value, and other properties
+ * @param {number} props.taskIndex - Index of the task for drag and drop ordering
+ * @returns {JSX.Element} Draggable task component with edit and delete functionality
+ */
 export const Task = ({ task, taskIndex }) => {
   // Accessing the data from the DataContext
   const { lists, setLists, tasks, setTasks } = useContext(DataContext);
