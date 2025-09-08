@@ -24,7 +24,7 @@ import { useState } from 'react';
  * const [data, setData] = useLocalStorage('data', null);
  */
 export const useLocalStorage = (key, initialValue) => {
-  // State para almacenar el valor
+  // State for storing the value
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = localStorage.getItem(key);
@@ -35,7 +35,7 @@ export const useLocalStorage = (key, initialValue) => {
     }
   });
 
-  // Función para actualizar el estado y localStorage
+  // Update function to sync state and localStorage
   const setValue = (value) => {
     try {
       setStoredValue(value);
