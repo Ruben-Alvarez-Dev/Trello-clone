@@ -12,13 +12,13 @@ import { UI_STRINGS } from '../constants';
  * Provides functionality for editing list title, removing lists, and managing tasks.
  * @param {Object} props - Component props
  * @param {ListEntity} props.list - List object containing id, title, and value (task IDs)
- * @param {number} props.index - Index of the list for drag and drop ordering
+ * @param {number} [props.index] - Index of the list for drag and drop ordering
  * @returns {JSX.Element} Draggable list component with tasks and controls
  *
  * @example
  * <List list={{ id: 'list-1', title: 'To Do', value: [] }} index={0} />
  */
-export const List = ({ list, index }) => {
+export const List = ({ list }) => {
   const { lists, setLists, tasks, setTasks } = useContext(DataContext);
   const listTasks = list.value.map((taskId) => tasks.find((task) => task.id === taskId)).filter(Boolean);
   const [editable, setEditable] = useState(false);
