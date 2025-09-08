@@ -11,7 +11,7 @@ import { UI_STRINGS } from '../constants';
  * List component that renders a draggable list containing tasks.
  * Provides functionality for editing list title, removing lists, and managing tasks.
  * @param {Object} props - Component props
- * @param {List} props.list - List object containing id, title, and value (task IDs)
+ * @param {ListEntity} props.list - List object containing id, title, and value (task IDs)
  * @param {number} props.index - Index of the list for drag and drop ordering
  * @returns {JSX.Element} Draggable list component with tasks and controls
  *

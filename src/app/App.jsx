@@ -40,7 +40,7 @@ export const App = () => {
 
   /**
    * Handle reordering lists horizontally.
-   * @param {List[]} lists
+   * @param {ListEntity[]} lists
    * @param {{index:number}} source
    * @param {{index:number}} destination
    * @returns {List[]}
@@ -54,8 +54,8 @@ export const App = () => {
 
   /**
    * Handle reordering tasks within the same list.
-   * @param {List[]} lists
-   * @param {List} sourceList
+   * @param {ListEntity[]} lists
+   * @param {ListEntity} sourceList
    * @param {{index:number}} source
    * @param {{index:number}} destination
    * @returns {List[]}
@@ -75,9 +75,9 @@ export const App = () => {
 
   /**
    * Handle moving tasks between different lists.
-   * @param {List[]} lists
-   * @param {List} sourceList
-   * @param {List} destinationList
+   * @param {ListEntity[]} lists
+   * @param {ListEntity} sourceList
+   * @param {ListEntity} destinationList
    * @param {{index:number}} source
    * @param {{index:number}} destination
    * @returns {List[]}

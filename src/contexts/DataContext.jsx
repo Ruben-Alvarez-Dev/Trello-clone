@@ -2,7 +2,7 @@ import { createContext } from 'react'
 
 /**
  * Task entity used throughout the application.
- * @typedef {Object} Task
+ * @typedef {Object} TaskEntity
  * @property {string} id - Unique identifier.
  * @property {string} value - Task content.
  * @property {string} [title] - Optional title (may mirror value).
@@ -10,7 +10,7 @@ import { createContext } from 'react'
 
 /**
  * List entity containing task ids.
- * @typedef {Object} List
+ * @typedef {Object} ListEntity
  * @property {string} id - Unique identifier.
  * @property {string} title - List title.
  * @property {string[]} value - Array of task ids belonging to this list.
@@ -19,9 +19,9 @@ import { createContext } from 'react'
 /**
  * Shape of the DataContext value.
  * @typedef {Object} DataContextValue
- * @property {List[]} lists
+ * @property {ListEntity[]} lists
  * @property {Function} setLists
- * @property {Task[]} tasks
+ * @property {TaskEntity[]} tasks
  * @property {Function} setTasks
  */
 

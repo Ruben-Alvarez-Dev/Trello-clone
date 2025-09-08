@@ -9,7 +9,7 @@ import { UI_STRINGS } from '../constants';
  * Provides functionality for editing task content and removing tasks.
  *
  * @param {Object} props - Component props
- * @param {Task} props.task - Task object containing id and value
+ * @param {TaskEntity} props.task - Task object containing id and value
  * @param {number} props.index - Index of the task for drag and drop ordering
  * @returns {JSX.Element} Draggable task component with edit and delete functionality
  *

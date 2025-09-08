@@ -18,7 +18,7 @@ import { UI_STRINGS, CSS_CLASSES } from '../constants';
  *
  * @param {Object} props
  * @param {('forTask'|'forList')} props.type - Selects task or list creation mode.
- * @param {List} [props.list] - Target list when adding a task.
+ * @param {ListEntity} [props.list] - Target list when adding a task.
  * @returns {JSX.Element}
  *
  * @example
@@ -29,7 +29,7 @@ import { UI_STRINGS, CSS_CLASSES } from '../constants';
  * // Add new list input
  * <AddCardorList type="forList" />
  */
-export const AddCardorList = ({ type, list = '' }) => {
+export const AddCardorList = ({ type, list = null }) => {
   
   // Accessing data from the DataContext
   const { lists, setLists, tasks, setTasks } = useContext(DataContext);
