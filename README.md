@@ -78,6 +78,11 @@ src/
   assets/              # Static assets (icons, images)
 ```
 
+## 📚 Documentation
+
+- GitHub view: docs/README.md
+- Online site: https://www.trello-clone.rubenalvarez.dev/
+
 ## 🧭 How to Use
 
 1. Add lists: click "Add a list" to create columns
