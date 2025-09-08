@@ -60,7 +60,7 @@ export const List = ({ list, index }) => {
   };
 
   return (
-    <div id={list.id} className="list" index={index}>
+    <div id={list.id} className="list">
       <div className="title">
         {editable ? (
           // Input field for editing the list title
@@ -95,7 +95,7 @@ export const List = ({ list, index }) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                   >
-                    <Task task={task} index={taskIndex} />
+                    <Task task={task} />
                   </div>
                 )}
               </Draggable>

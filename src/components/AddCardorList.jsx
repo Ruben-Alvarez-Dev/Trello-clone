@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { DataContext } from '../contexts/DataContext';
 import './AddCardorList.css';
 import { v4 } from 'uuid';
-import { UI_STRINGS, CSS_CLASSES } from '../constants';
+import { UI_STRINGS } from '../constants';
 
 /**
  * AddCardorList component for adding new tasks or lists

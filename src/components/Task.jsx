@@ -17,7 +17,7 @@ import { UI_STRINGS } from '../constants';
  * // Inside a list
  * <Task task={{ id: 't1', value: 'Buy milk' }} index={0} />
  */
-export const Task = ({ task, index }) => {
+export const Task = ({ task }) => {
   // Accessing the data from the DataContext
   const { lists, setLists, tasks, setTasks } = useContext(DataContext);
 
