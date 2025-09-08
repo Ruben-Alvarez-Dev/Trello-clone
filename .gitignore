@@ -25,6 +25,11 @@ dist-ssr
 
 # Development directories - NEVER commit
 /plan
-plan/
 /.rules
-.rules/
+/dist
+/Screenflow
+/scripts
+CHANGELOG.md
+
+
+
