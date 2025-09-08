@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>contexts/DataContext.jsx - Trello Clone Documentation</title>
+    <title>helper/HandleData.jsx - Trello Clone Documentation</title>
     
     <meta name="description" content="Complete documentation for the Trello Clone React application" />
     
@@ -40,7 +40,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">contexts/DataContext.jsx</h1>
+    <h1 class="page-title">helper/HandleData.jsx</h1>
     
 
     
@@ -50,38 +50,32 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { createContext } from 'react'
-
-/**
- * Task entity used throughout the application.
- * @typedef {Object} Task
- * @property {string} id - Unique identifier.
- * @property {string} value - Task content.
- * @property {string} [title] - Optional title (may mirror value).
+            <pre class="prettyprint source linenums"><code>/**
+ * Safely reads lists and tasks from localStorage.
+ * Returns empty arrays if keys are missing or on parse error.
+ * @returns {{lists: Array, tasks: Array}} Parsed data from storage
  */
+export const readData = () => {
+  
+    let rawLists = localStorage.getItem('lists') || console.log('No lists found');
+    let rawTasks = localStorage.getItem('tasks') || console.log('No tasks found');
 
-/**
- * List entity containing task ids.
- * @typedef {Object} List
- * @property {string} id - Unique identifier.
- * @property {string} title - List title.
- * @property {string[]} value - Array of task ids belonging to this list.
- */
+    let lists = [];
+    let tasks = [];
+    try {
+      lists = JSON.parse(rawLists);
+      tasks = JSON.parse(rawTasks);
+    } catch (e) {
+      console.error('Invalid JSON in localStorage. Resetting.', e);
+      lists = [];
+      tasks = [];
+    }
+    
+    /* console.log(lists);
+    console.log(tasks); */
 
-/**
- * Shape of the DataContext value.
- * @typedef {Object} DataContextValue
- * @property {List[]} lists
- * @property {Function} setLists
- * @property {Task[]} tasks
- * @property {Function} setTasks
- */
-
-/**
- * React context for sharing lists and tasks across components.
- * Provides centralized state management for the Trello clone application.
- */
-export const DataContext = createContext()
+    return { lists, tasks };
+}
 </code></pre>
         </article>
     </section>

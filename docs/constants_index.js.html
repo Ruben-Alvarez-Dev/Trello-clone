@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>contexts/DataContext.jsx - Trello Clone Documentation</title>
+    <title>constants/index.js - Trello Clone Documentation</title>
     
     <meta name="description" content="Complete documentation for the Trello Clone React application" />
     
@@ -40,7 +40,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">contexts/DataContext.jsx</h1>
+    <h1 class="page-title">constants/index.js</h1>
     
 
     
@@ -50,38 +50,71 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { createContext } from 'react'
-
-/**
- * Task entity used throughout the application.
- * @typedef {Object} Task
- * @property {string} id - Unique identifier.
- * @property {string} value - Task content.
- * @property {string} [title] - Optional title (may mirror value).
+            <pre class="prettyprint source linenums"><code>/**
+ * Application configuration constants and UI-class namespaces.
+ * @module constants/index
  */
 
 /**
- * List entity containing task ids.
- * @typedef {Object} List
- * @property {string} id - Unique identifier.
- * @property {string} title - List title.
- * @property {string[]} value - Array of task ids belonging to this list.
+ * Application configuration values.
+ * @namespace APP_CONFIG
+ * @property {string} TITLE - Application title.
+ * @property {Object} STORAGE_KEYS - Keys used in localStorage.
+ * @property {string} STORAGE_KEYS.LISTS - localStorage key for lists.
+ * @property {string} STORAGE_KEYS.TASKS - localStorage key for tasks.
  */
+// Application configuration constants
+export const APP_CONFIG = {
+  TITLE: 'Trello Clone App',
+  STORAGE_KEYS: {
+    LISTS: 'lists',
+    TASKS: 'tasks'
+  }
+};
 
 /**
- * Shape of the DataContext value.
- * @typedef {Object} DataContextValue
- * @property {List[]} lists
- * @property {Function} setLists
- * @property {Task[]} tasks
- * @property {Function} setTasks
+ * User interface strings for consistent copy across components.
+ * @namespace UI_STRINGS
+ * @property {string} ADD_TASK
+ * @property {string} ADD_LIST
+ * @property {string} ENTER_TASK
+ * @property {string} ENTER_LIST
+ * @property {string} NEW
+ * @property {string} CLOSE
+ * @property {string} REMOVE
  */
+// User interface strings
+export const UI_STRINGS = {
+  ADD_TASK: 'Add a task',
+  ADD_LIST: 'Add a list', 
+  ENTER_TASK: 'Enter task...',
+  ENTER_LIST: 'Enter list name...',
+  NEW: 'New',
+  CLOSE: 'Close',
+  REMOVE: 'Remove'
+};
 
 /**
- * React context for sharing lists and tasks across components.
- * Provides centralized state management for the Trello clone application.
+ * CSS class names grouped for reuse.
+ * @namespace CSS_CLASSES
+ * @property {string} INPUT_CONTAINER
+ * @property {string} BUTTON_BAR
+ * @property {string} INPUT
+ * @property {string} TASK
+ * @property {string} LIST
+ * @property {string} FOR_TASK
+ * @property {string} FOR_LIST
  */
-export const DataContext = createContext()
+// CSS class name constants
+export const CSS_CLASSES = {
+  INPUT_CONTAINER: 'input_container',
+  BUTTON_BAR: 'button_bar',
+  INPUT: 'input',
+  TASK: 'task',
+  LIST: 'list',
+  FOR_TASK: 'forTask',
+  FOR_LIST: 'forList'
+};
 </code></pre>
         </article>
     </section>

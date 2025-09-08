@@ -34,7 +34,7 @@
     <input type="text" id="nav-search" placeholder="Search" />
     
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/Ruben-Alvarez-Dev/Trello-clone" target="_blank" class="menu-item" id="website_link" >Github</a></h2><h3>Global</h3><ul><li><a href="global.html#AddCardorList">AddCardorList</a></li><li><a href="global.html#DataContext">DataContext</a></li><li><a href="global.html#List">List</a></li><li><a href="global.html#Task">Task</a></li><li><a href="global.html#handleEditTitle">handleEditTitle</a></li><li><a href="global.html#handleRemoveList">handleRemoveList</a></li><li><a href="global.html#handleTitleBlur">handleTitleBlur</a></li><li><a href="global.html#handleTitleChange">handleTitleChange</a></li><li><a href="global.html#useLocalStorage">useLocalStorage</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/Ruben-Alvarez-Dev/Trello-clone" target="_blank" class="menu-item" id="website_link" >Github</a></h2><h3>Modules</h3><ul><li><a href="module-constants_index.html">constants/index</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-constants_index-APP_CONFIG.html">APP_CONFIG</a></li><li><a href="module-constants_index-CSS_CLASSES.html">CSS_CLASSES</a></li><li><a href="module-constants_index-UI_STRINGS.html">UI_STRINGS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddCardorList">AddCardorList</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#DataContext">DataContext</a></li><li><a href="global.html#DataContextValue">DataContextValue</a></li><li><a href="global.html#List">List</a></li><li><a href="global.html#Task">Task</a></li><li><a href="global.html#handleEditTitle">handleEditTitle</a></li><li><a href="global.html#handleRemoveList">handleRemoveList</a></li><li><a href="global.html#handleTitleBlur">handleTitleBlur</a></li><li><a href="global.html#handleTitleChange">handleTitleChange</a></li><li><a href="global.html#initData">initData</a></li><li><a href="global.html#readData">readData</a></li><li><a href="global.html#useLocalStorage">useLocalStorage</a></li></ul>
     
 </nav>
 
@@ -139,14 +139,14 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>AddCardorList component for adding new tasks or lists
-Displays different UI based on type prop and handles form submission</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>UI control to add a new task to a list or create a new list.
+Renders the appropriate input based on the <code>type</code> prop.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_AddCardorList.jsx.html">components/AddCardorList.jsx</a>, <a href="components_AddCardorList.jsx.html#line15">line 15</a>
+        <a href="components_AddCardorList.jsx.html">components/AddCardorList.jsx</a>, <a href="components_AddCardorList.jsx.html#line24">line 24</a>
     </li></ul></dd>
     
 
@@ -186,8 +186,77 @@ Displays different UI based on type prop and handles form submission</p></li></u
 
 
 <div class="description usertext">
-    <p>AddCardorList component for adding new tasks or lists
-Displays different UI based on type prop and handles form submission</p>
+    <p>UI control to add a new task to a list or create a new list.
+Renders the appropriate input based on the <code>type</code> prop.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="App"><span class="type-signature type-signature-constant">(constant) </span>App<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Main Trello Clone application component.
+Manages global state and drag-and-drop behavior for lists and tasks.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app_App.jsx.html">app/App.jsx</a>, <a href="app_App.jsx.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Main Trello Clone application component.
+Manages global state and drag-and-drop behavior for lists and tasks.</p>
 </div>
 
 
@@ -208,14 +277,14 @@ Displays different UI based on type prop and handles form submission</p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>React context for sharing lists and tasks data across components
-Provides centralized state management for the Trello clone application</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>React context for sharing lists and tasks across components.
+Provides centralized state management for the Trello clone application.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="contexts_DataContext.jsx.html">contexts/DataContext.jsx</a>, <a href="contexts_DataContext.jsx.html#line12">line 12</a>
+        <a href="contexts_DataContext.jsx.html">contexts/DataContext.jsx</a>, <a href="contexts_DataContext.jsx.html#line32">line 32</a>
     </li></ul></dd>
     
 
@@ -252,136 +321,11 @@ Provides centralized state management for the Trello clone application</p></li><
 
 
 
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>lists</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Array of list objects containing id, title, and value (task IDs)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>setLists</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Function to update the lists state</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>tasks</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Array of task objects containing id, value, and other properties</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>setTasks</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Function to update the tasks state</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
 
 
 <div class="description usertext">
-    <p>React context for sharing lists and tasks data across components
-Provides centralized state management for the Trello clone application</p>
+    <p>React context for sharing lists and tasks across components.
+Provides centralized state management for the Trello clone application.</p>
 </div>
 
 
@@ -520,6 +464,146 @@ Provides functionality for editing task content and removing tasks</p></li></ul>
 <div class="description usertext">
     <p>Task component that renders individual draggable tasks within lists
 Provides functionality for editing task content and removing tasks</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="initData"><span class="type-signature type-signature-constant">(constant) </span>initData<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Initialize default lists and tasks in localStorage if not present.
+Adds missing ids and basic positions, and assigns tasks to lists.
+Idempotent: will not overwrite existing storage keys.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="helper_InitData.jsx.html">helper/InitData.jsx</a>, <a href="helper_InitData.jsx.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Initialize default lists and tasks in localStorage if not present.
+Adds missing ids and basic positions, and assigns tasks to lists.
+Idempotent: will not overwrite existing storage keys.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="readData"><span class="type-signature type-signature-constant">(constant) </span>readData<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Safely reads lists and tasks from localStorage.
+Returns empty arrays if keys are missing or on parse error.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="helper_HandleData.jsx.html">helper/HandleData.jsx</a>, <a href="helper_HandleData.jsx.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Safely reads lists and tasks from localStorage.
+Returns empty arrays if keys are missing or on parse error.</p>
 </div>
 
 
@@ -1014,6 +1098,593 @@ const [data, setData] = useLocalStorage('data', null);</code></pre>
     
 
     
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id="DataContextValue">DataContextValue</h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Shape of the DataContext value.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="contexts_DataContext.jsx.html">contexts/DataContext.jsx</a>, <a href="contexts_DataContext.jsx.html#line19">line 19</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>lists</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="global.html#List">List</a>></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>setLists</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tasks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="global.html#Task">Task</a>></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>setTasks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description usertext">
+    <p>Shape of the DataContext value.</p>
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+            
+                
+<h4 class="name" id="List">List</h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>List entity containing task ids.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="contexts_DataContext.jsx.html">contexts/DataContext.jsx</a>, <a href="contexts_DataContext.jsx.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Unique identifier.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>List title.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Array of task ids belonging to this list.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description usertext">
+    <p>List entity containing task ids.</p>
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+            
+                
+<h4 class="name" id="Task">Task</h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Task entity used throughout the application.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="contexts_DataContext.jsx.html">contexts/DataContext.jsx</a>, <a href="contexts_DataContext.jsx.html#line3">line 3</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Unique identifier.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Task content.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional title (may mirror value).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description usertext">
+    <p>Task entity used throughout the application.</p>
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+            
+    
 
     
 </article>
@@ -1030,7 +1701,7 @@ const [data, setData] = useLocalStorage('data', null);</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 05:46:17 GMT+0200 (hora de verano de Europa central) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 05:50:47 GMT+0200 (hora de verano de Europa central) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

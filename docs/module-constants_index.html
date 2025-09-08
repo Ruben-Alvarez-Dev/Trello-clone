@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>contexts/DataContext.jsx - Trello Clone Documentation</title>
+    <title>constants/index - Trello Clone Documentation</title>
     
     <meta name="description" content="Complete documentation for the Trello Clone React application" />
     
@@ -40,51 +40,151 @@
 
 <div id="main">
     
-    <h1 class="page-title">contexts/DataContext.jsx</h1>
+    <h1 class="page-title">constants/index</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import { createContext } from 'react'
+        
+            
+        
+    
+</header>
 
-/**
- * Task entity used throughout the application.
- * @typedef {Object} Task
- * @property {string} id - Unique identifier.
- * @property {string} value - Task content.
- * @property {string} [title] - Optional title (may mirror value).
- */
+<article>
+    
+        <div class="container-overview">
+        
+            
+                <div class="description usertext"><p>Application configuration constants and UI-class namespaces.</p></div>
+            
 
-/**
- * List entity containing task ids.
- * @typedef {Object} List
- * @property {string} id - Unique identifier.
- * @property {string} title - List title.
- * @property {string[]} value - Array of task ids belonging to this list.
- */
+            
+                
 
-/**
- * Shape of the DataContext value.
- * @typedef {Object} DataContextValue
- * @property {List[]} lists
- * @property {Function} setLists
- * @property {Task[]} tasks
- * @property {Function} setTasks
- */
 
-/**
- * React context for sharing lists and tasks across components.
- * Provides centralized state management for the Trello clone application.
- */
-export const DataContext = createContext()
-</code></pre>
-        </article>
-    </section>
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Application configuration constants and UI-class namespaces.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_index.js.html">constants/index.js</a>, <a href="constants_index.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+        <h3 class="subsection-title">Namespaces</h3>
+
+        <dl>
+            <dt><a href="module-constants_index-APP_CONFIG.html">APP_CONFIG</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-constants_index-CSS_CLASSES.html">CSS_CLASSES</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-constants_index-UI_STRINGS.html">UI_STRINGS</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

@@ -1,6 +1,12 @@
 import data from "../data/data.json";
 import { v4 as uuidv4 } from "uuid";
 
+/**
+ * Initialize default lists and tasks in localStorage if not present.
+ * Adds missing ids and basic positions, and assigns tasks to lists.
+ * Idempotent: will not overwrite existing storage keys.
+ * @returns {void}
+ */
 export const initData = () => {
   let lists = data.lists;
   let tasks = data.tasks;

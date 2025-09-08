@@ -1,3 +1,16 @@
+/**
+ * Application configuration constants and UI-class namespaces.
+ * @module constants/index
+ */
+
+/**
+ * Application configuration values.
+ * @namespace APP_CONFIG
+ * @property {string} TITLE - Application title.
+ * @property {Object} STORAGE_KEYS - Keys used in localStorage.
+ * @property {string} STORAGE_KEYS.LISTS - localStorage key for lists.
+ * @property {string} STORAGE_KEYS.TASKS - localStorage key for tasks.
+ */
 // Application configuration constants
 export const APP_CONFIG = {
   TITLE: 'Trello Clone App',
@@ -7,6 +20,17 @@ export const APP_CONFIG = {
   }
 };
 
+/**
+ * User interface strings for consistent copy across components.
+ * @namespace UI_STRINGS
+ * @property {string} ADD_TASK
+ * @property {string} ADD_LIST
+ * @property {string} ENTER_TASK
+ * @property {string} ENTER_LIST
+ * @property {string} NEW
+ * @property {string} CLOSE
+ * @property {string} REMOVE
+ */
 // User interface strings
 export const UI_STRINGS = {
   ADD_TASK: 'Add a task',
@@ -18,6 +42,17 @@ export const UI_STRINGS = {
   REMOVE: 'Remove'
 };
 
+/**
+ * CSS class names grouped for reuse.
+ * @namespace CSS_CLASSES
+ * @property {string} INPUT_CONTAINER
+ * @property {string} BUTTON_BAR
+ * @property {string} INPUT
+ * @property {string} TASK
+ * @property {string} LIST
+ * @property {string} FOR_TASK
+ * @property {string} FOR_LIST
+ */
 // CSS class name constants
 export const CSS_CLASSES = {
   INPUT_CONTAINER: 'input_container',

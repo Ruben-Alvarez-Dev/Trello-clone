@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>contexts/DataContext.jsx - Trello Clone Documentation</title>
+    <title>helper/InitData.jsx - Trello Clone Documentation</title>
     
     <meta name="description" content="Complete documentation for the Trello Clone React application" />
     
@@ -40,7 +40,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">contexts/DataContext.jsx</h1>
+    <h1 class="page-title">helper/InitData.jsx</h1>
     
 
     
@@ -50,38 +50,45 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { createContext } from 'react'
+            <pre class="prettyprint source linenums"><code>import data from "../data/data.json";
+import { v4 as uuidv4 } from "uuid";
 
 /**
- * Task entity used throughout the application.
- * @typedef {Object} Task
- * @property {string} id - Unique identifier.
- * @property {string} value - Task content.
- * @property {string} [title] - Optional title (may mirror value).
+ * Initialize default lists and tasks in localStorage if not present.
+ * Adds missing ids and basic positions, and assigns tasks to lists.
+ * Idempotent: will not overwrite existing storage keys.
+ * @returns {void}
  */
+export const initData = () => {
+  let lists = data.lists;
+  let tasks = data.tasks;
 
-/**
- * List entity containing task ids.
- * @typedef {Object} List
- * @property {string} id - Unique identifier.
- * @property {string} title - List title.
- * @property {string[]} value - Array of task ids belonging to this list.
- */
+  lists.forEach(list => {
+    if (!list.id) {
+      list.id = uuidv4();
+    }
+    if (list.position === undefined) {
+      list.position = lists.indexOf(list);
+    }
+  });
 
-/**
- * Shape of the DataContext value.
- * @typedef {Object} DataContextValue
- * @property {List[]} lists
- * @property {Function} setLists
- * @property {Task[]} tasks
- * @property {Function} setTasks
- */
+  tasks.forEach(task => {
+    if (!task.id) {
+      task.id = uuidv4();
+    }
+  });
 
-/**
- * React context for sharing lists and tasks across components.
- * Provides centralized state management for the Trello clone application.
- */
-export const DataContext = createContext()
+  lists.forEach((list, index) => {
+    const startIndex = index * 4;
+    const endIndex = startIndex + 4;
+    list.value = tasks.slice(startIndex, endIndex).map(task => task.id);
+  });
+
+  localStorage.getItem("lists") || localStorage.setItem("lists", JSON.stringify(lists));
+  localStorage.getItem("tasks") || localStorage.setItem("tasks", JSON.stringify(tasks));
+  
+  return;
+}
 </code></pre>
         </article>
     </section>

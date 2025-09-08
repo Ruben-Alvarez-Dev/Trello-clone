@@ -12,6 +12,15 @@ import { UI_STRINGS, CSS_CLASSES } from '../constants';
  * @param {string} [props.list=''] - List ID when adding tasks to specific list
  * @returns {JSX.Element} Form component for adding cards or lists
  */
+/**
+ * UI control to add a new task to a list or create a new list.
+ * Renders the appropriate input based on the `type` prop.
+ *
+ * @param {Object} props
+ * @param {('forTask'|'forList')} props.type - Selects task or list creation mode.
+ * @param {List} [props.list] - Target list when adding a task.
+ * @returns {JSX.Element}
+ */
 export const AddCardorList = ({ type, list = '' }) => {
   
   // Accessing data from the DataContext

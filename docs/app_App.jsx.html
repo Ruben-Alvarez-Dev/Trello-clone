@@ -1,4 +1,56 @@
-import './App.css';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>app/App.jsx - Trello Clone Documentation</title>
+    
+    <meta name="description" content="Complete documentation for the Trello Clone React application" />
+    
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/Ruben-Alvarez-Dev/Trello-clone" target="_blank" class="menu-item" id="website_link" >Github</a></h2><h3>Modules</h3><ul><li><a href="module-constants_index.html">constants/index</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-constants_index-APP_CONFIG.html">APP_CONFIG</a></li><li><a href="module-constants_index-CSS_CLASSES.html">CSS_CLASSES</a></li><li><a href="module-constants_index-UI_STRINGS.html">UI_STRINGS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddCardorList">AddCardorList</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#DataContext">DataContext</a></li><li><a href="global.html#DataContextValue">DataContextValue</a></li><li><a href="global.html#List">List</a></li><li><a href="global.html#Task">Task</a></li><li><a href="global.html#handleEditTitle">handleEditTitle</a></li><li><a href="global.html#handleRemoveList">handleRemoveList</a></li><li><a href="global.html#handleTitleBlur">handleTitleBlur</a></li><li><a href="global.html#handleTitleChange">handleTitleChange</a></li><li><a href="global.html#initData">initData</a></li><li><a href="global.html#readData">readData</a></li><li><a href="global.html#useLocalStorage">useLocalStorage</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">app/App.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import './App.css';
 import React, { useEffect } from 'react';
 import { DataContext } from '../contexts/DataContext';
 import { List } from '../components/List';
@@ -24,7 +76,7 @@ export const App = () => {
 
   // Initialize default data if localStorage is empty
   useEffect(() => {
-    if (lists.length === 0 && tasks.length === 0) {
+    if (lists.length === 0 &amp;&amp; tasks.length === 0) {
       initData();
       // Force reload data after initialization
       const storedLists = JSON.parse(localStorage.getItem(APP_CONFIG.STORAGE_KEYS.LISTS) || '[]');
@@ -145,38 +197,65 @@ export const App = () => {
 
   
   return (
-    <DataContext.Provider value={{ lists, setLists, tasks, setTasks }}>
-      <>
-        <h1>{APP_CONFIG.TITLE}</h1>
+    &lt;DataContext.Provider value={{ lists, setLists, tasks, setTasks }}>
+      &lt;>
+        &lt;h1>{APP_CONFIG.TITLE}&lt;/h1>
 
-          <DragDropContext onDragEnd={onDragEnd}> 
-          <Droppable droppableId="all-lists" direction="horizontal" type="list">            
+          &lt;DragDropContext onDragEnd={onDragEnd}> 
+          &lt;Droppable droppableId="all-lists" direction="horizontal" type="list">            
             {(provided) => (
-              <div {...provided.droppableProps} ref={provided.innerRef}>
+              &lt;div {...provided.droppableProps} ref={provided.innerRef}>
 
-                    <div className="app">
+                    &lt;div className="app">
                       {
                         lists.map((list, index) => (
                           
-                            <Draggable key={list.id} draggableId={list.id} index={index}>
+                            &lt;Draggable key={list.id} draggableId={list.id} index={index}>
                             {(provided)=>(
-                              <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                  <List list={list} index={index}/>
-                              </div>
+                              &lt;div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                  &lt;List list={list} index={index}/>
+                              &lt;/div>
                             )}
-                            </Draggable>
+                            &lt;/Draggable>
 
                         ))
                       }
-                      <AddCardorList type="forList" />
-                    </div>
+                      &lt;AddCardorList type="forList" />
+                    &lt;/div>
               {provided.placeholder}
-              </div>
+              &lt;/div>
             )}
-          </Droppable>
-          </DragDropContext>
+          &lt;/Droppable>
+          &lt;/DragDropContext>
 
-      </>
-    </DataContext.Provider>
+      &lt;/>
+    &lt;/DataContext.Provider>
   );
 };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 05:50:47 GMT+0200 (hora de verano de Europa central) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>
