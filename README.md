@@ -215,3 +215,30 @@ If you found this project helpful, please give it a star!
 // Persisted state
 const [items, setItems] = useLocalStorage('items', []);
 ```
+
+## 🧾 Guía de Docstrings (JSDoc)
+
+- Idioma y estilo
+  - Escribe los docstrings en inglés (código y docs consistentes).
+  - Usa bloques `/** ... */` justo encima de funciones, componentes, hooks y utilidades exportadas.
+
+- Tipos y etiquetas
+  - `@typedef` para formas de datos compartidas (usa sufijo `Entity`, p. ej. `ListEntity`, `TaskEntity`).
+  - `@namespace` para grupos de constantes (p. ej. `APP_CONFIG`, `UI_STRINGS`, `CSS_CLASSES`).
+  - `@module` para archivos que exportan utilidades o constantes (p. ej. `constants/index`).
+  - `@param` y `@returns` siempre presentes; usa tipos JSDoc estándar:
+    - Arrays: `Array.<string>` o `string[]` (preferimos `Array.<Type>` por compatibilidad).
+    - Uniones: `string|number`.
+    - Parámetros opcionales: `@param {Type} [name]` y para propiedades anidadas documenta cada una en línea separada.
+    - Evita genéricos/TS avanzados: nada de `import('react').Context<>`, `?`, `<>`, `Record<,>`.
+
+- Componentes y hooks
+  - Componentes React: documenta `props` con forma clara (p. ej. `@param {{list: ListEntity, index: number}} props`).
+  - Hooks: incluye ejemplo de uso y explica el arreglo de retorno (`@returns {Array}`), p. ej. `useLocalStorage`.
+
+- Ejemplos
+  - Añade `@example` con un snippet mínimo y realista para cada API pública.
+
+- Organización
+  - Coloca `@typedef` compartidos cerca del contexto o en el módulo con mayor relevancia (aquí, `DataContext.jsx`).
+  - Evita nombres de tipos que colisionen con componentes (usa sufijo `Entity`).
