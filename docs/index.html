@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>🚀 Trello Clone App</h1>
+<p>A modern, responsive Trello clone built with React and Vite. Features drag-and-drop functionality for managing tasks and lists with localStorage persistence.</p>
+<p><img src="Trello-clone.gif" alt="Trello Clone Demo"></p>
+<h2>✨ Features</h2>
+<ul>
+<li>🖱️ Drag &amp; Drop: move tasks between lists and reorder them</li>
+<li>💾 Auto-save: automatic persistence using localStorage</li>
+<li>🧩 CRUD operations: add, edit, and delete tasks and lists</li>
+<li>📱 Responsive design: desktop and mobile friendly</li>
+<li>⚡ Fast performance: Vite-powered workflow</li>
+<li>🧠 Clean architecture: custom hooks and modular components</li>
+</ul>
+<h2>🧰 Tech Stack</h2>
+<ul>
+<li>Frontend: React 18, JSX</li>
+<li>Build tool: Vite</li>
+<li>Drag &amp; Drop: react-beautiful-dnd</li>
+<li>Styling: CSS3, BEM methodology</li>
+<li>State management: React Context API + custom hooks</li>
+<li>Storage: localStorage with error handling</li>
+<li>Icons: SVG assets</li>
+</ul>
+<h2>🚀 Quick Start</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li>Node.js 18+</li>
+<li>npm or yarn</li>
+</ul>
+<h3>Installation</h3>
+<pre class="prettyprint source lang-bash"><code># Clone the repository
+git clone https://github.com/Ruben-Alvarez-Dev/project_trello-clon.git
+
+# Navigate to project directory
+cd project_trello-clon
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+</code></pre>
+<p>The app runs at <code>http://localhost:5173</code>.</p>
+<h2>📦 Available Scripts</h2>
+<pre class="prettyprint source lang-bash"><code># Development server
+npm run dev
+
+# Production build
+npm run build
+
+# Preview production build
+npm run preview
+
+# Lint code
+npm run lint
+
+# Auto-commit (custom script)
+npm run commit
+</code></pre>
+<h2>🗂️ Project Structure</h2>
+<pre class="prettyprint source"><code>src/
+  app/                 # Main application component
+  components/          # Reusable React components
+  hooks/               # Custom React hooks
+  contexts/            # React Context providers
+  constants/           # Application constants
+  helper/              # Utility functions
+  data/                # Initial data configuration
+  assets/              # Static assets (icons, images)
+</code></pre>
+<h2>🧭 How to Use</h2>
+<ol>
+<li>Add lists: click &quot;Add a list&quot; to create columns</li>
+<li>Add tasks: click &quot;Add a task&quot; within any list</li>
+<li>Drag &amp; drop:
+<ul>
+<li>Drag tasks between lists to change status</li>
+<li>Reorder tasks within the same list</li>
+<li>Reorder lists horizontally</li>
+</ul>
+</li>
+<li>Edit: double-click on any task or list title</li>
+<li>Delete: click the trash icon on tasks or lists</li>
+</ol>
+<h2>🏗️ Architecture Highlights</h2>
+<h3>Custom Hooks</h3>
+<ul>
+<li><code>useLocalStorage</code>: localStorage synchronization with error handling</li>
+</ul>
+<h3>Clean Code Principles</h3>
+<ul>
+<li>Single Responsibility Principle</li>
+<li>DRY (Don't Repeat Yourself)</li>
+<li>Separation of concerns between components</li>
+<li>Centralized constants management</li>
+</ul>
+<h3>Performance Optimizations</h3>
+<ul>
+<li>Efficient drag-and-drop handling</li>
+<li>Minimal re-renders with proper state management</li>
+<li>Lazy loading where applicable</li>
+</ul>
+<h2>🚢 Deployment</h2>
+<h3>Build for Production</h3>
+<pre class="prettyprint source lang-bash"><code>npm run build
+</code></pre>
+<p>The build files are generated in the <code>dist/</code> directory.</p>
+<h3>Deploy to Static Hosting</h3>
+<p>Can be deployed to any static hosting service:</p>
+<ul>
+<li>Netlify</li>
+<li>Vercel</li>
+<li>GitHub Pages</li>
+<li>AWS S3</li>
+<li>Any shared hosting with static file support</li>
+</ul>
+<h2>🤝 Contributing</h2>
+<ol>
+<li>Fork the repository</li>
+<li>Create your feature branch (<code>git checkout -b feature/AmazingFeature</code>)</li>
+<li>Commit your changes (<code>git commit -m 'feat: add amazing feature'</code>)</li>
+<li>Push to the branch (<code>git push origin feature/AmazingFeature</code>)</li>
+<li>Open a Pull Request</li>
+</ol>
+<h3>Commit Convention</h3>
+<p>This project follows conventional commits:</p>
+<ul>
+<li><code>feat:</code> new features</li>
+<li><code>fix:</code> bug fixes</li>
+<li><code>refactor:</code> code refactoring</li>
+<li><code>docs:</code> documentation changes</li>
+<li><code>style:</code> formatting changes</li>
+</ul>
+<h2>📄 License</h2>
+<p>This project is open source under the <a href="LICENSE">MIT License</a>.</p>
+<h2>👤 Author</h2>
+<p><strong>Ruben Alvarez Dev</strong></p>
+<ul>
+<li>GitHub: <a href="https://github.com/Ruben-Alvarez-Dev">@Ruben-Alvarez-Dev</a></li>
+<li>Email: ruben.alvarez.dev@gmail.com</li>
+</ul>
+<h2>🙏 Acknowledgments</h2>
+<ul>
+<li>React Beautiful DND for drag-and-drop functionality</li>
+<li>Vite for the excellent development experience</li>
+<li>React team for the amazing framework</li>
+</ul>
+<hr>
+<p>If you found this project helpful, please give it a star!</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 05:08:18 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
