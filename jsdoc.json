@@ -6,8 +6,29 @@
   },
   "opts": {
     "destination": "./docs/",
-    "recurse": true
+    "recurse": true,
+    "template": "node_modules/docdash"
   },
-  "plugins": ["plugins/markdown"]
+  "plugins": ["plugins/markdown"],
+  "docdash": {
+    "static": true,
+    "sort": true,
+    "search": true,
+    "collapse": false,
+    "typedefs": true,
+    "removeQuotes": "none",
+    "scripts": [],
+    "menu": {
+      "Github": {
+        "href": "https://github.com/Ruben-Alvarez-Dev/Trello-clone",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "website_link"
+      }
+    },
+    "meta": {
+      "title": "Trello Clone Documentation",
+      "description": "Complete documentation for the Trello Clone React application"
+    }
+  }
 }
-

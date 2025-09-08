@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
  * 
  * @param {string} key - The localStorage key to use for persistence
  * @param {*} initialValue - Default value to use if localStorage is empty or invalid
- * @returns {[any, Function]} Array containing [storedValue, setValue] - similar to useState
+ * @returns {Array} Array containing [storedValue, setValue] - similar to useState
  * 
  * @example
  * // Basic usage
