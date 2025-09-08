@@ -33,10 +33,10 @@ A modern, responsive Trello clone built with React and Vite. Features drag-and-d
 
 ```bash
 # Clone the repository
-git clone https://github.com/Ruben-Alvarez-Dev/project_trello-clon.git
+git clone https://github.com/Ruben-Alvarez-Dev/Trello-clone.git
 
 # Navigate to project directory
-cd project_trello-clon
+cd Trello-clone
 
 # Install dependencies
 npm install
