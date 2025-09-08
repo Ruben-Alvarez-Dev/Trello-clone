@@ -223,19 +223,19 @@ npm run commit
 </li>
 <li>State management
 <ul>
-<li>React Context (<code>DataContext</code>) expone <code>{ lists, setLists, tasks, setTasks }</code></li>
-<li>Persistencia vía <code>useLocalStorage(key, initialValue)</code></li>
+<li>React Context (<code>DataContext</code>) exposes <code>{ lists, setLists, tasks, setTasks }</code></li>
+<li>Persistence via <code>useLocalStorage(key, initialValue)</code></li>
 </ul>
 </li>
 <li>Drag &amp; Drop
 <ul>
-<li><code>react-beautiful-dnd</code> con <code>DragDropContext</code>, <code>Droppable</code> (listas/tareas) y <code>Draggable</code> (listas/tareas)</li>
-<li>Reordenación horizontal de listas y vertical de tareas; mover tareas entre listas</li>
+<li><code>react-beautiful-dnd</code> with <code>DragDropContext</code>, <code>Droppable</code> (lists/tasks) and <code>Draggable</code> (lists/tasks)</li>
+<li>Horizontal list reordering and vertical task reordering; move tasks between lists</li>
 </ul>
 </li>
-<li>Inicialización
+<li>Initialization
 <ul>
-<li><code>initData()</code> carga datos de <code>src/data/data.json</code> en <code>localStorage</code> si no existen</li>
+<li><code>initData()</code> seeds from <code>src/data/data.json</code> into <code>localStorage</code> when missing</li>
 </ul>
 </li>
 </ul>
@@ -243,39 +243,39 @@ npm run commit
 <ul>
 <li>App
 <ul>
-<li>Orquesta el estado global, inicializa datos, implementa <code>onDragEnd</code></li>
-<li>Helpers puros: reordenar listas, reordenar tareas, mover tareas entre listas</li>
+<li>Orchestrates global state, initializes data, implements <code>onDragEnd</code></li>
+<li>Pure helpers: reorder lists, reorder tasks, move tasks between lists</li>
 </ul>
 </li>
 <li>List
 <ul>
-<li>Renderiza una lista con su título editable y acciones</li>
-<li>Mapea <code>list.value</code> (ids) → tareas y renderiza <code>Task</code></li>
+<li>Renders a list with editable title and actions</li>
+<li>Maps <code>list.value</code> (ids) → tasks and renders <code>Task</code></li>
 </ul>
 </li>
 <li>Task
 <ul>
-<li>Permite editar el contenido y eliminar la tarea</li>
+<li>Edits content and removes a task</li>
 </ul>
 </li>
 <li>AddCardorList
 <ul>
-<li>Modo <code>forTask</code>: crea tareas dentro de una lista</li>
-<li>Modo <code>forList</code>: crea nuevas listas</li>
+<li><code>forTask</code>: create tasks inside a list</li>
+<li><code>forList</code>: create new lists</li>
 </ul>
 </li>
 </ul>
 <h2>🔄 Drag-and-Drop Flow</h2>
 <ol>
-<li>Usuario arrastra lista o tarea → <code>onDragEnd(result)</code> en <code>App</code></li>
-<li>Si <code>type === 'list'</code> → <code>handleListReorder</code></li>
-<li>Si <code>type === 'task'</code>:
+<li>User drags a list or task → <code>onDragEnd(result)</code> in <code>App</code></li>
+<li>If <code>type === 'list'</code> → <code>handleListReorder</code></li>
+<li>If <code>type === 'task'</code>:
 <ul>
-<li>Misma lista → <code>handleTaskReorderSameList</code></li>
-<li>Listas distintas → <code>handleTaskMoveBetweenLists</code></li>
+<li>Same list → <code>handleTaskReorderSameList</code></li>
+<li>Different lists → <code>handleTaskMoveBetweenLists</code></li>
 </ul>
 </li>
-<li><code>setLists</code> persiste en estado + localStorage</li>
+<li><code>setLists</code> persists state + localStorage</li>
 </ol>
 <h2>🧪 Usage Examples</h2>
 <pre class="prettyprint source lang-jsx"><code>// Add a list input
@@ -293,52 +293,7 @@ npm run commit
 // Persisted state
 const [items, setItems] = useLocalStorage('items', []);
 </code></pre>
-<h2>🧾 Guía de Docstrings (JSDoc)</h2>
-<ul>
-<li>
-<p>Idioma y estilo</p>
-<ul>
-<li>Escribe los docstrings en inglés (código y docs consistentes).</li>
-<li>Usa bloques <code>/** ... */</code> justo encima de funciones, componentes, hooks y utilidades exportadas.</li>
-</ul>
-</li>
-<li>
-<p>Tipos y etiquetas</p>
-<ul>
-<li><code>@typedef</code> para formas de datos compartidas (usa sufijo <code>Entity</code>, p. ej. <code>ListEntity</code>, <code>TaskEntity</code>).</li>
-<li><code>@namespace</code> para grupos de constantes (p. ej. <code>APP_CONFIG</code>, <code>UI_STRINGS</code>, <code>CSS_CLASSES</code>).</li>
-<li><code>@module</code> para archivos que exportan utilidades o constantes (p. ej. <code>constants/index</code>).</li>
-<li><code>@param</code> y <code>@returns</code> siempre presentes; usa tipos JSDoc estándar:
-<ul>
-<li>Arrays: <code>Array.&lt;string&gt;</code> o <code>string[]</code> (preferimos <code>Array.&lt;Type&gt;</code> por compatibilidad).</li>
-<li>Uniones: <code>string|number</code>.</li>
-<li>Parámetros opcionales: <code>@param {Type} [name]</code> y para propiedades anidadas documenta cada una en línea separada.</li>
-<li>Evita genéricos/TS avanzados: nada de <code>import('react').Context&lt;&gt;</code>, <code>?</code>, <code>&lt;&gt;</code>, <code>Record&lt;,&gt;</code>.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Componentes y hooks</p>
-<ul>
-<li>Componentes React: documenta <code>props</code> con forma clara (p. ej. <code>@param {{list: ListEntity, index: number}} props</code>).</li>
-<li>Hooks: incluye ejemplo de uso y explica el arreglo de retorno (<code>@returns {Array}</code>), p. ej. <code>useLocalStorage</code>.</li>
-</ul>
-</li>
-<li>
-<p>Ejemplos</p>
-<ul>
-<li>Añade <code>@example</code> con un snippet mínimo y realista para cada API pública.</li>
-</ul>
-</li>
-<li>
-<p>Organización</p>
-<ul>
-<li>Coloca <code>@typedef</code> compartidos cerca del contexto o en el módulo con mayor relevancia (aquí, <code>DataContext.jsx</code>).</li>
-<li>Evita nombres de tipos que colisionen con componentes (usa sufijo <code>Entity</code>).</li>
-</ul>
-</li>
-</ul></article>
+<!-- Internal contributor guidance intentionally removed from public README --></article>
     </section>
 
 
@@ -353,7 +308,7 @@ const [items, setItems] = useLocalStorage('items', []);
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 15:34:41 GMT+0200 (hora de verano de Europa central) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 16:16:02 GMT+0200 (hora de verano de Europa central) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -166,36 +166,36 @@ If you found this project helpful, please give it a star!
   - List: `{ id: string, title: string, value: string[] }` where `value` holds task ids
   - Task: `{ id: string, value: string }`
 - State management
-  - React Context (`DataContext`) expone `{ lists, setLists, tasks, setTasks }`
-  - Persistencia vía `useLocalStorage(key, initialValue)`
+  - React Context (`DataContext`) exposes `{ lists, setLists, tasks, setTasks }`
+  - Persistence via `useLocalStorage(key, initialValue)`
 - Drag & Drop
-  - `react-beautiful-dnd` con `DragDropContext`, `Droppable` (listas/tareas) y `Draggable` (listas/tareas)
-  - Reordenación horizontal de listas y vertical de tareas; mover tareas entre listas
-- Inicialización
-  - `initData()` carga datos de `src/data/data.json` en `localStorage` si no existen
+  - `react-beautiful-dnd` with `DragDropContext`, `Droppable` (lists/tasks) and `Draggable` (lists/tasks)
+  - Horizontal list reordering and vertical task reordering; move tasks between lists
+- Initialization
+  - `initData()` seeds from `src/data/data.json` into `localStorage` when missing
 
 ## 🔧 Component Responsibilities
 
 - App
-  - Orquesta el estado global, inicializa datos, implementa `onDragEnd`
-  - Helpers puros: reordenar listas, reordenar tareas, mover tareas entre listas
+  - Orchestrates global state, initializes data, implements `onDragEnd`
+  - Pure helpers: reorder lists, reorder tasks, move tasks between lists
 - List
-  - Renderiza una lista con su título editable y acciones
-  - Mapea `list.value` (ids) → tareas y renderiza `Task`
+  - Renders a list with editable title and actions
+  - Maps `list.value` (ids) → tasks and renders `Task`
 - Task
-  - Permite editar el contenido y eliminar la tarea
+  - Edits content and removes a task
 - AddCardorList
-  - Modo `forTask`: crea tareas dentro de una lista
-  - Modo `forList`: crea nuevas listas
+  - `forTask`: create tasks inside a list
+  - `forList`: create new lists
 
 ## 🔄 Drag-and-Drop Flow
 
-1. Usuario arrastra lista o tarea → `onDragEnd(result)` en `App`
-2. Si `type === 'list'` → `handleListReorder`
-3. Si `type === 'task'`:
-   - Misma lista → `handleTaskReorderSameList`
-   - Listas distintas → `handleTaskMoveBetweenLists`
-4. `setLists` persiste en estado + localStorage
+1. User drags a list or task → `onDragEnd(result)` in `App`
+2. If `type === 'list'` → `handleListReorder`
+3. If `type === 'task'`:
+   - Same list → `handleTaskReorderSameList`
+   - Different lists → `handleTaskMoveBetweenLists`
+4. `setLists` persists state + localStorage
 
 ## 🧪 Usage Examples
 
@@ -216,29 +216,4 @@ If you found this project helpful, please give it a star!
 const [items, setItems] = useLocalStorage('items', []);
 ```
 
-## 🧾 Guía de Docstrings (JSDoc)
-
-- Idioma y estilo
-  - Escribe los docstrings en inglés (código y docs consistentes).
-  - Usa bloques `/** ... */` justo encima de funciones, componentes, hooks y utilidades exportadas.
-
-- Tipos y etiquetas
-  - `@typedef` para formas de datos compartidas (usa sufijo `Entity`, p. ej. `ListEntity`, `TaskEntity`).
-  - `@namespace` para grupos de constantes (p. ej. `APP_CONFIG`, `UI_STRINGS`, `CSS_CLASSES`).
-  - `@module` para archivos que exportan utilidades o constantes (p. ej. `constants/index`).
-  - `@param` y `@returns` siempre presentes; usa tipos JSDoc estándar:
-    - Arrays: `Array.<string>` o `string[]` (preferimos `Array.<Type>` por compatibilidad).
-    - Uniones: `string|number`.
-    - Parámetros opcionales: `@param {Type} [name]` y para propiedades anidadas documenta cada una en línea separada.
-    - Evita genéricos/TS avanzados: nada de `import('react').Context<>`, `?`, `<>`, `Record<,>`.
-
-- Componentes y hooks
-  - Componentes React: documenta `props` con forma clara (p. ej. `@param {{list: ListEntity, index: number}} props`).
-  - Hooks: incluye ejemplo de uso y explica el arreglo de retorno (`@returns {Array}`), p. ej. `useLocalStorage`.
-
-- Ejemplos
-  - Añade `@example` con un snippet mínimo y realista para cada API pública.
-
-- Organización
-  - Coloca `@typedef` compartidos cerca del contexto o en el módulo con mayor relevancia (aquí, `DataContext.jsx`).
-  - Evita nombres de tipos que colisionen con componentes (usa sufijo `Entity`).
+<!-- Internal contributor guidance intentionally removed from public README -->
